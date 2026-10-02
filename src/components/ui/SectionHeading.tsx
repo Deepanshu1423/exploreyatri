@@ -16,11 +16,11 @@ export function SectionHeading({
       <p className="mb-3 text-xs font-semibold uppercase tracking-[0.28em] text-[var(--primary)]">
         {eyebrow}
       </p>
-      <h2 className="text-3xl font-semibold text-[var(--text-primary)] sm:text-4xl lg:text-5xl">
+      <h2 className="text-2xl font-semibold text-[var(--text-primary)] sm:text-3xl lg:text-5xl">
         {title}
       </h2>
       {description ? (
-        <p className="mt-4 text-base leading-7 text-[var(--text-secondary)] sm:text-lg">
+        <p className="mt-4 text-sm leading-7 text-[var(--text-secondary)] sm:text-base lg:text-lg">
           {description}
         </p>
       ) : null}

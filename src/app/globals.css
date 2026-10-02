@@ -373,12 +373,47 @@ html.dark .intro-loader {
   }
 
   .hero-visual {
-    width: min(100%, 24rem);
+    width: min(100%, 22rem);
     margin-top: 0.5rem;
   }
 
   .float-card {
     padding: 0.7rem 0.8rem;
+  }
+
+  .float-card strong {
+    font-size: 0.72rem;
+  }
+
+  .floating-pin {
+    font-size: 0.62rem;
+    padding: 0.38rem 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-main-image {
+    inset: 12% 8% 12% 8%;
+  }
+
+  .float-card--domestic {
+    left: 0;
+    top: 8%;
+  }
+
+  .float-card--international {
+    right: 0;
+    bottom: 8%;
+  }
+
+  .floating-pin--one {
+    right: 4%;
+    top: 18%;
+  }
+
+  .floating-pin--two {
+    left: 4%;
+    bottom: 18%;
   }
 }
 

@@ -38,7 +38,7 @@ export function PackageCategories() {
               href={category.href}
               className="group relative overflow-hidden rounded-[30px] border border-[var(--border)] bg-[var(--surface)] p-4 shadow-[0_18px_40px_rgba(15,23,42,0.05)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_55px_rgba(15,23,42,0.08)]"
             >
-              <div className="relative h-[400px] overflow-hidden rounded-[26px]">
+              <div className="relative h-[280px] overflow-hidden rounded-[26px] sm:h-[340px] lg:h-[400px]">
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
                   style={{ backgroundImage: `url(${category.image})` }}
@@ -49,8 +49,8 @@ export function PackageCategories() {
                   <div className="inline-flex items-center rounded-full border border-white/30 bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.28em] backdrop-blur-sm">
                     Curated travel
                   </div>
-                  <h3 className="mt-4 text-3xl font-semibold leading-tight">{category.title}</h3>
-                  <p className="mt-3 max-w-sm text-sm leading-7 text-white/80">{category.description}</p>
+                  <h3 className="mt-4 text-2xl font-semibold leading-tight sm:text-3xl">{category.title}</h3>
+                  <p className="mt-3 max-w-sm text-sm leading-6 text-white/80 sm:leading-7">{category.description}</p>
 
                   <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--text-on-primary)]">
                     {category.title.includes("Domestic") ? "Explore Domestic" : "Explore International"}

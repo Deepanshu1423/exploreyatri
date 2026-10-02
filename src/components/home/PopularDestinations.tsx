@@ -20,7 +20,7 @@ export function PopularDestinations() {
               key={destination.id}
               className="group overflow-hidden rounded-[28px] border border-[var(--border)] bg-[var(--surface)] shadow-[0_18px_40px_rgba(15,23,42,0.05)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_55px_rgba(15,23,42,0.08)]"
             >
-              <div className="relative h-80 overflow-hidden">
+              <div className="relative h-64 overflow-hidden sm:h-72 lg:h-80">
                 <Image
                   src={destination.image}
                   alt={destination.name}
@@ -34,7 +34,7 @@ export function PopularDestinations() {
               <div className="space-y-4 p-6">
                 <div className="flex items-center justify-between gap-4">
                   <div>
-                    <h3 className="text-2xl font-semibold text-[var(--text-primary)]">{destination.name}</h3>
+                    <h3 className="text-xl font-semibold text-[var(--text-primary)] sm:text-2xl">{destination.name}</h3>
                     <p className="mt-2 text-sm text-[var(--text-secondary)]">{destination.location}</p>
                   </div>
                   <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[var(--surface-soft)] text-[var(--primary)] transition-transform duration-300 group-hover:translate-x-1">
@@ -42,7 +42,7 @@ export function PopularDestinations() {
                   </span>
                 </div>
 
-                <p className="text-sm leading-7 text-[var(--text-secondary)]">{destination.description}</p>
+                <p className="text-sm leading-6 text-[var(--text-secondary)] sm:leading-7">{destination.description}</p>
               </div>
             </article>
           ))}

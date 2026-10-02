@@ -10,12 +10,12 @@ export function Hero() {
             EXPLORE • DREAM • DISCOVER
           </p>
 
-          <h1 className="max-w-xl text-5xl font-semibold leading-[0.94] tracking-[-0.06em] text-[var(--text-primary)] sm:text-6xl lg:text-7xl">
+          <h1 className="max-w-xl text-4xl font-semibold leading-[0.94] tracking-[-0.06em] text-[var(--text-primary)] sm:text-5xl lg:text-7xl">
             Journeys Made
             <span className="block text-[var(--primary)]">Worth Remembering.</span>
           </h1>
 
-          <p className="mt-6 max-w-xl text-base leading-8 text-[var(--text-secondary)] sm:text-lg">
+          <p className="mt-6 max-w-xl text-sm leading-7 text-[var(--text-secondary)] sm:text-base lg:text-lg">
             Discover handpicked domestic and international holidays designed around the way you love to travel.
           </p>
 

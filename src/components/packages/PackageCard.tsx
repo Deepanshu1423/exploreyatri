@@ -6,7 +6,7 @@ import type { Package } from "@/data/packages";
 export function PackageCard({ packageItem }: { packageItem: Package }) {
   return (
     <article className="group overflow-hidden rounded-[28px] border border-[var(--border)] bg-[var(--surface)] shadow-[0_20px_45px_rgba(15,23,42,0.04)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(15,23,42,0.08)]">
-      <div className="relative h-64 overflow-hidden">
+      <div className="relative h-52 overflow-hidden sm:h-64">
         <Image
           src={packageItem.image}
           alt={`${packageItem.title} in ${packageItem.location}`}
@@ -20,10 +20,10 @@ export function PackageCard({ packageItem }: { packageItem: Package }) {
         </span>
       </div>
 
-      <div className="space-y-5 p-5 sm:p-6">
+      <div className="space-y-4 p-5 sm:space-y-5 sm:p-6">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <h3 className="text-2xl font-semibold text-[var(--text-primary)]">{packageItem.title}</h3>
+            <h3 className="text-xl font-semibold text-[var(--text-primary)] sm:text-2xl">{packageItem.title}</h3>
             <div className="mt-3 flex items-center gap-2 text-sm text-[var(--text-secondary)]">
               <MapPin className="h-4 w-4 text-[var(--primary)]" />
               <span>{packageItem.location}</span>
@@ -48,7 +48,7 @@ export function PackageCard({ packageItem }: { packageItem: Package }) {
           </Link>
         </div>
 
-        <p className="text-sm leading-7 text-[var(--text-secondary)]">{packageItem.description}</p>
+        <p className="text-sm leading-6 text-[var(--text-secondary)] sm:leading-7">{packageItem.description}</p>
       </div>
     </article>
   );
