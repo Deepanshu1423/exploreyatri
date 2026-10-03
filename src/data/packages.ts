@@ -1,82 +1,171 @@
-export type PackageType = "Domestic" | "International";
+import { TravelPackage } from "@/types/package";
 
-export interface Package {
-  id: string;
-  title: string;
-  location: string;
-  type: PackageType;
-  duration: string;
-  price: string;
-  description: string;
-  image: string;
-  slug: string;
-}
+export const packages: TravelPackage[] = [
+  {
+    id: "pkg-001",
 
-export const packages: Package[] = [
-  {
-    id: "kashmir-spring",
-    title: "Kashmir Bliss",
-    location: "Dal Lake, Kashmir",
-    type: "Domestic",
-    duration: "5 Nights / 6 Days",
-    price: "From ₹18,499",
-    description: "Gentle valleys, houseboats, and scenic mornings for a serene Himalayan escape.",
-    image: "/images/hero-travel.svg",
-    slug: "/packages/domestic/kashmir",
+    title: "Kashmir Paradise Escape",
+    slug: "kashmir-paradise-escape",
+
+    type: "domestic",
+
+    destination: "Kashmir",
+    location: "Jammu & Kashmir, India",
+
+    days: 6,
+    nights: 5,
+
+    price: 24999,
+    originalPrice: 29999,
+
+    shortDescription:
+      "Snow-capped mountains, peaceful lakes and unforgettable Himalayan landscapes.",
+
+    description:
+      "Experience Srinagar, Gulmarg and Pahalgam through a thoughtfully designed Kashmir holiday.",
+
+    coverImage: "/images/packages/kashmir-paradise.jpg",
+    coverImageAlt:
+      "Scenic Kashmir lake surrounded by Himalayan mountains",
+
+    gallery: [],
+
+    highlights: [
+      "Dal Lake experience",
+      "Gulmarg excursion",
+      "Pahalgam sightseeing",
+      "Srinagar city tour",
+    ],
+
+    inclusions: [
+      "Hotel accommodation",
+      "Daily breakfast",
+      "Private transfers",
+      "Sightseeing",
+    ],
+
+    exclusions: [
+      "Flights",
+      "Personal expenses",
+      "Travel insurance",
+    ],
+
+    featured: true,
+    status: "active",
+
+    createdAt: "2026-10-04",
+    updatedAt: "2026-10-04",
   },
+
   {
-    id: "goa-beach",
-    title: "Goa Getaway",
-    location: "North Goa, India",
-    type: "Domestic",
-    duration: "4 Nights / 5 Days",
-    price: "From ₹14,999",
-    description: "Sunny beaches, lively evenings, and indulgent coastal comfort with a relaxed rhythm.",
-    image: "/images/hero-travel.svg",
-    slug: "/packages/domestic/goa",
+    id: "pkg-002",
+
+    title: "Bali Tropical Escape",
+    slug: "bali-tropical-escape",
+
+    type: "international",
+
+    destination: "Bali",
+    location: "Indonesia",
+
+    days: 7,
+    nights: 6,
+
+    price: 54999,
+    originalPrice: 62999,
+
+    shortDescription:
+      "Tropical beaches, peaceful temples and beautiful island experiences.",
+
+    description:
+      "Discover Bali through a premium combination of tropical landscapes, local culture and relaxation.",
+
+    coverImage: "/images/packages/bali-tropical.jpg",
+    coverImageAlt:
+      "Luxury tropical beach landscape in Bali Indonesia",
+
+    gallery: [],
+
+    highlights: [
+      "Ubud sightseeing",
+      "Temple visits",
+      "Island tour",
+      "Beach experiences",
+    ],
+
+    inclusions: [
+      "Hotel accommodation",
+      "Breakfast",
+      "Airport transfers",
+      "Selected sightseeing",
+    ],
+
+    exclusions: [
+      "International flights",
+      "Visa fees",
+      "Personal expenses",
+    ],
+
+    featured: true,
+    status: "active",
+
+    createdAt: "2026-10-04",
+    updatedAt: "2026-10-04",
   },
+
   {
-    id: "kerala-escape",
-    title: "Kerala Retreat",
-    location: "Munnar, Kerala",
-    type: "Domestic",
-    duration: "6 Nights / 7 Days",
-    price: "From ₹22,299",
-    description: "Tea gardens, backwaters, and soft wellness moments set in a lush green landscape.",
-    image: "/images/hero-travel.svg",
-    slug: "/packages/domestic/kerala",
-  },
-  {
-    id: "dubai-city",
-    title: "Dubai Icons",
-    location: "Dubai, UAE",
-    type: "International",
-    duration: "4 Nights / 5 Days",
-    price: "From ₹42,999",
-    description: "Skyline views, desert evenings, and elevated experiences crafted for modern explorers.",
-    image: "/images/hero-travel.svg",
-    slug: "/packages/international/dubai",
-  },
-  {
-    id: "bali-luxury",
-    title: "Bali Serenity",
-    location: "Ubud, Bali",
-    type: "International",
-    duration: "5 Nights / 6 Days",
-    price: "From ₹39,499",
-    description: "Rice terraces, ocean breezes, and a peaceful island rhythm for rest and discovery.",
-    image: "/images/hero-travel.svg",
-    slug: "/packages/international/bali",
-  },
-  {
-    id: "thailand-gold",
-    title: "Thailand Escape",
-    location: "Bangkok & Phuket",
-    type: "International",
-    duration: "5 Nights / 6 Days",
-    price: "From ₹35,699",
-    description: "A rich blend of city charm, island views, and easygoing tropical adventure.",
-    image: "/images/hero-travel.svg",
-    slug: "/packages/international/thailand",
+    id: "pkg-003",
+
+    title: "Manali Mountain Retreat",
+    slug: "manali-mountain-retreat",
+
+    type: "domestic",
+
+    destination: "Manali",
+    location: "Himachal Pradesh, India",
+
+    days: 5,
+    nights: 4,
+
+    price: 18999,
+    originalPrice: 22999,
+
+    shortDescription:
+      "A refreshing Himalayan escape filled with mountains, valleys and adventure.",
+
+    description:
+      "Relax in Manali while exploring scenic valleys, mountain roads and famous attractions.",
+
+    coverImage: "/images/packages/manali-retreat.jpg",
+    coverImageAlt:
+      "Snow covered mountains and valley landscape in Manali",
+
+    gallery: [],
+
+    highlights: [
+      "Solang Valley",
+      "Manali sightseeing",
+      "Mountain views",
+      "Local experiences",
+    ],
+
+    inclusions: [
+      "Accommodation",
+      "Breakfast",
+      "Transfers",
+      "Sightseeing",
+    ],
+
+    exclusions: [
+      "Adventure activities",
+      "Flights",
+      "Personal expenses",
+    ],
+
+    featured: true,
+    status: "active",
+
+    createdAt: "2026-10-04",
+    updatedAt: "2026-10-04",
   },
 ];

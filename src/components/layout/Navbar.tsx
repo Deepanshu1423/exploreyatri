@@ -10,36 +10,51 @@ import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 export function Navbar() {
   const pathname = usePathname();
+
   const [mobileOpen, setMobileOpen] = useState(false);
   const [packagesOpen, setPackagesOpen] = useState(false);
 
   useEffect(() => {
-    const timeout = window.setTimeout(() => {
-      setMobileOpen(false);
-      setPackagesOpen(false);
-    }, 0);
-
-    return () => window.clearTimeout(timeout);
+    setMobileOpen(false);
+    setPackagesOpen(false);
   }, [pathname]);
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  };
 
   return (
     <header className="sticky top-0 z-50">
-      <div className="absolute inset-0 bg-[var(--surface)]/80 backdrop-blur-sm" />
-      <div className="absolute inset-x-0 bottom-0 h-px bg-[var(--border)]" />
-      <nav className="relative mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8" aria-label="Main navigation">
-        <Link href="/" className="flex items-center" aria-label="ExploreYatri home">
+      <div className="absolute inset-0 bg-white/[0.04] backdrop-blur-md dark:bg-black/[0.08]" />
+
+      <div className="absolute inset-x-0 bottom-0 h-px bg-white/10 dark:bg-white/5" />
+
+      <nav
+        className="relative mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8"
+        aria-label="Main navigation"
+      >
+        <Link
+          href="/"
+          className="flex shrink-0 items-center"
+          aria-label="ExploreYatri home"
+        >
           <Image
-            src="/logo/exploreyatri-logo.webp"
+            src="/logo/explore-yatri-logo.png"
             alt="ExploreYatri logo"
-            width={180}
-            height={54}
+            width={240}
+            height={150}
             priority
-            className="h-auto w-[140px] sm:w-[170px]"
+            sizes="120px"
+            className="h-auto w-[95px] object-contain sm:w-[105px] lg:w-[115px]"
           />
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">
-          <Link href="/" className="nav-link active">
+          <Link
+            href="/"
+            className={`nav-link ${isActive("/") ? "active" : ""}`}
+          >
             Home
           </Link>
 
@@ -48,81 +63,111 @@ export function Navbar() {
               type="button"
               aria-expanded={packagesOpen}
               aria-controls="packages-menu"
-              className="nav-link inline-flex items-center gap-1"
+              className={`nav-link inline-flex items-center gap-1 ${
+                pathname.startsWith("/packages") ? "active" : ""
+              }`}
               onClick={() => setPackagesOpen((open) => !open)}
             >
               Packages
-              <ChevronDown className={`h-4 w-4 transition-transform ${packagesOpen ? "rotate-180" : ""}`} />
+              <ChevronDown
+                className={`h-4 w-4 transition-transform duration-300 ${
+                  packagesOpen ? "rotate-180" : ""
+                }`}
+              />
             </button>
 
-            {packagesOpen ? (
+            {packagesOpen && (
               <div
                 id="packages-menu"
-                className="absolute left-0 top-full mt-4 min-w-56 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-2 shadow-[0_24px_50px_rgba(15,23,42,0.08)]"
+                className="absolute left-1/2 top-full mt-5 min-w-60 -translate-x-1/2 rounded-2xl border border-white/30 bg-white/80 p-2 shadow-[0_24px_60px_rgba(32,20,14,0.13)] backdrop-blur-xl dark:border-white/10 dark:bg-[rgba(29,23,20,0.82)]"
               >
                 {siteConfig.nav[1].children?.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="block rounded-xl px-3 py-2.5 text-sm text-[var(--text-secondary)] transition-colors hover:bg-[var(--surface-soft)] hover:text-[var(--text-primary)]"
+                    className="block rounded-xl px-4 py-3 text-sm font-medium text-[var(--text-secondary)] transition-all hover:bg-[var(--surface-soft)] hover:text-[var(--primary)]"
                   >
                     {item.label}
                   </Link>
                 ))}
               </div>
-            ) : null}
+            )}
           </div>
 
-          <Link href="/destinations" className="nav-link">
+          <Link
+            href="/destinations"
+            className={`nav-link ${isActive("/destinations") ? "active" : ""}`}
+          >
             Destinations
           </Link>
-          <Link href="/about" className="nav-link">
+
+          <Link
+            href="/about"
+            className={`nav-link ${isActive("/about") ? "active" : ""}`}
+          >
             About Us
           </Link>
-          <Link href="/contact" className="nav-link">
+
+          <Link
+            href="/contact"
+            className={`nav-link ${isActive("/contact") ? "active" : ""}`}
+          >
             Contact Us
           </Link>
         </div>
 
         <div className="hidden items-center gap-3 md:flex">
           <ThemeToggle />
+
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 rounded-full bg-[var(--primary)] px-5 py-3 text-sm font-semibold text-[var(--text-on-primary)] shadow-[0_18px_38px_rgba(15,118,110,0.2)] transition-all duration-300 hover:bg-[var(--primary-hover)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary)]"
+            className="group inline-flex items-center gap-2 rounded-full bg-[var(--primary)] px-5 py-3 text-sm font-bold text-white shadow-[0_14px_34px_var(--primary-shadow)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[var(--primary-hover)]"
           >
             <Phone className="h-4 w-4" />
             Plan My Trip
           </Link>
         </div>
 
-        <div className="flex items-center gap-3 md:hidden">
+        <div className="flex items-center gap-2 md:hidden">
           <ThemeToggle />
+
           <button
             type="button"
-            aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-label={
+              mobileOpen ? "Close navigation menu" : "Open navigation menu"
+            }
             aria-expanded={mobileOpen}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text-primary)]"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-white/30 text-[var(--text-primary)] shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-black/20"
             onClick={() => setMobileOpen((open) => !open)}
           >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {mobileOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
           </button>
         </div>
       </nav>
 
-      {mobileOpen ? (
-        <div className="border-t border-[var(--border)] bg-[var(--surface)] md:hidden">
+      {mobileOpen && (
+        <div className="border-t border-white/20 bg-white/75 backdrop-blur-xl md:hidden dark:border-white/10 dark:bg-[rgba(19,14,12,0.8)]">
           <div className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6">
             <Link href="/" className="nav-link-mobile">
               Home
             </Link>
 
-            <div className="rounded-2xl border border-[var(--border)] bg-[var(--surface-soft)] p-3">
-              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--text-secondary)]">
+            <div className="my-1 rounded-2xl border border-[var(--border)] bg-[var(--surface-soft)]/85 p-3 backdrop-blur-md">
+              <p className="mb-2 px-2 text-xs font-bold uppercase tracking-[0.2em] text-[var(--primary)]">
                 Packages
               </p>
+
               <div className="flex flex-col gap-1">
                 {siteConfig.nav[1].children?.map((item) => (
-                  <Link key={item.href} href={item.href} className="nav-link-mobile">
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="nav-link-mobile"
+                  >
                     {item.label}
                   </Link>
                 ))}
@@ -132,21 +177,25 @@ export function Navbar() {
             <Link href="/destinations" className="nav-link-mobile">
               Destinations
             </Link>
+
             <Link href="/about" className="nav-link-mobile">
               About Us
             </Link>
+
             <Link href="/contact" className="nav-link-mobile">
               Contact Us
             </Link>
+
             <Link
               href="/contact"
-              className="mt-2 inline-flex items-center justify-center rounded-full bg-[var(--primary)] px-5 py-3 text-sm font-semibold text-[var(--text-on-primary)]"
+              className="mt-3 inline-flex items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-5 py-3.5 text-sm font-bold text-white"
             >
+              <Phone className="h-4 w-4" />
               Plan My Trip
             </Link>
           </div>
         </div>
-      ) : null}
+      )}
     </header>
   );
 }

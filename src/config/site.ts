@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "ExploreYatri",
   tagline: "Handpicked escapes for every kind of traveller",
   phone: "+91 93680 66293",
-  email: "Exploreyatri01@gamil.com",
+  email: "Exploreyatri01@gmail.com",
   instagram: "https://www.instagram.com/exploreyatri__?stkn=emF0dHZ1cjEyemI2",
   facebook: "https://www.facebook.com/share/1EW9iWavqm/?mibextid=wwXIfr",
   nav: [

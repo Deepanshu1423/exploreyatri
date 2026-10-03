@@ -5,43 +5,64 @@ import { useEffect, useState } from "react";
 
 export function IntroLoader() {
   const [visible, setVisible] = useState(true);
-  const [mounted, setMounted] = useState(false);
+  const [closing, setClosing] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const closeTimer = window.setTimeout(() => {
+      setClosing(true);
+    }, 1600);
 
-    const mountedTimeout = window.setTimeout(() => {
-      setMounted(true);
-    }, 0);
-
-    const visibilityTimeout = window.setTimeout(
-      () => setVisible(false),
-      mediaQuery.matches ? 500 : 1700,
-    );
+    const removeTimer = window.setTimeout(() => {
+      setVisible(false);
+    }, 2050);
 
     return () => {
-      window.clearTimeout(mountedTimeout);
-      window.clearTimeout(visibilityTimeout);
+      window.clearTimeout(closeTimer);
+      window.clearTimeout(removeTimer);
     };
   }, []);
 
-  if (!mounted || !visible) {
-    return null;
-  }
+  if (!visible) return null;
 
   return (
-    <div className="intro-loader" aria-live="polite" aria-label="Loading ExploreYatri">
-      <div className="intro-loader__brand" aria-label="ExploreYatri logo">
-        <Image
-          src="/logo/exploreyatri-logo.webp"
-          alt="ExploreYatri logo"
-          width={260}
-          height={84}
-          priority
-          className="h-auto w-[220px] sm:w-[260px]"
-        />
+    <div
+      className={`premium-loader ${
+        closing ? "premium-loader--closing" : ""
+      }`}
+      aria-hidden="true"
+    >
+      <div className="premium-loader__glow premium-loader__glow--one" />
+      <div className="premium-loader__glow premium-loader__glow--two" />
+
+      <div className="premium-loader__content">
+        <div className="premium-loader__logo-wrap">
+          <div className="premium-loader__ring" />
+
+          <div className="premium-loader__logo-position">
+            <Image
+              src="/logo/explore-yatri-logo.png"
+              alt="Explore Yatri"
+              width={320}
+              height={220}
+              priority
+              sizes="(max-width: 640px) 218px, 275px"
+              className="premium-loader__logo"
+            />
+          </div>
+        </div>
+
+        <p className="premium-loader__tagline">
+          Explore • Dream • Discover
+        </p>
+
+        <div className="premium-loader__line">
+          <span />
+        </div>
+
+        <p className="premium-loader__small">
+          Built for Explorers
+        </p>
       </div>
-      <div className="intro-loader__line" aria-hidden="true" />
     </div>
   );
 }
