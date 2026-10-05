@@ -1,58 +1,70 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, BookOpen, Sparkles } from "lucide-react";
 
 import { BlogCard } from "@/components/blogs/BlogCard";
+import { Container } from "@/components/ui/Container";
 import { getLatestBlogs } from "@/services/blogService";
 
 export function LatestBlogs() {
-  const blogs = getLatestBlogs(3);
+  const latestBlogs = getLatestBlogs(3);
 
-  if (blogs.length === 0) {
+  if (latestBlogs.length === 0) {
     return null;
   }
 
   return (
-    <section className="theme-section-soft border-y border-[var(--border)] py-20 sm:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-2xl">
-            <p className="text-xs font-bold uppercase tracking-[0.28em] text-[var(--primary)]">
-              ExploreYatri Stories
-            </p>
+    <section
+      className="bg-[var(--background)] py-14 sm:py-16 lg:py-20"
+      aria-labelledby="latest-blogs-heading"
+    >
+      <Container>
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="inline-flex items-center gap-2">
+            <Sparkles className="h-4 w-4 text-[var(--primary)]" />
 
-            <h2 className="mt-4 text-3xl font-semibold leading-tight text-[var(--text-primary)] sm:text-4xl lg:text-5xl">
-              Travel inspiration,
-              <span className="hero-gradient-text block">
-                guides & stories.
-              </span>
-            </h2>
-
-            <p className="mt-5 max-w-xl text-sm leading-7 text-[var(--text-secondary)] sm:text-base">
-              Helpful travel guides, destination ideas and practical tips to
-              make every journey easier and more memorable.
+            <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-[var(--primary)] sm:text-xs sm:tracking-[0.28em]">
+              Travel Stories & Guides
             </p>
+          </div>
+
+          <h2
+            id="latest-blogs-heading"
+            className="mx-auto mt-3 max-w-3xl text-3xl font-semibold leading-[1.08] text-[var(--text-primary)] sm:text-4xl lg:text-5xl"
+          >
+            Ideas for your
+            <span className="hero-gradient-text block">
+              next unforgettable journey.
+            </span>
+          </h2>
+
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[var(--text-secondary)] sm:text-base">
+            Destination inspiration, practical travel tips and useful guides to
+            help you plan your trip with more confidence.
+          </p>
+        </div>
+
+        <div className="mt-8 grid grid-cols-1 gap-5 sm:mt-10 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {latestBlogs.map((blog) => (
+            <BlogCard key={blog.id} blog={blog} />
+          ))}
+        </div>
+
+        <div className="mt-8 flex flex-col items-center justify-center gap-3 text-center sm:mt-10">
+          <div className="inline-flex items-center gap-2 text-xs text-[var(--text-secondary)]">
+            <BookOpen className="h-4 w-4 text-[var(--primary)]" />
+            Fresh travel inspiration from ExploreYatri.
           </div>
 
           <Link
             href="/blogs"
-            className="group inline-flex w-fit items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-5 py-3 text-sm font-bold text-[var(--text-primary)] transition-all duration-300 hover:border-[var(--primary)] hover:text-[var(--primary)]"
+            className="group inline-flex items-center gap-2 rounded-full border border-[var(--border-strong)] bg-[var(--surface)] px-5 py-3 text-sm font-bold text-[var(--text-primary)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--primary)] hover:text-[var(--primary)]"
           >
-            View All Blogs
+            Explore All Blogs
 
             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
-
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {blogs.map((blog) => (
-            <BlogCard
-              key={blog.id}
-              blog={blog}
-            />
-          ))}
-        </div>
-      </div>
+      </Container>
     </section>
   );
 }

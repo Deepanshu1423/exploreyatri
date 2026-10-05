@@ -7,9 +7,15 @@ export interface PackageItinerary {
   description: string;
 }
 
+export interface PackagePriceOption {
+  label: string;
+  quad: number;
+  triple: number;
+  dual: number;
+}
+
 export interface TravelPackage {
   id: string;
-
   title: string;
   slug: string;
 
@@ -17,19 +23,20 @@ export interface TravelPackage {
 
   destination: string;
   location: string;
+  route?: string;
 
   days: number;
   nights: number;
 
   price: number;
   originalPrice?: number;
+  pricingOptions?: PackagePriceOption[];
 
   shortDescription: string;
   description: string;
 
   coverImage: string;
   coverImageAlt: string;
-
   gallery: string[];
 
   highlights: string[];
@@ -40,6 +47,8 @@ export interface TravelPackage {
 
   featured: boolean;
   status: PackageStatus;
+
+  sourceNote?: string;
 
   createdAt: string;
   updatedAt: string;

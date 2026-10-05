@@ -12,11 +12,11 @@ export function Hero() {
 
       <div className="relative mx-auto grid min-h-[calc(100vh-82px)] max-w-7xl items-center gap-12 px-4 py-14 sm:px-6 lg:grid-cols-[1.02fr_0.98fr] lg:px-8 lg:py-16">
         <div className="relative z-10 max-w-2xl">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)]/82 px-4 py-2 shadow-sm backdrop-blur-md">
-            <Sparkles className="h-3.5 w-3.5 text-[var(--primary)]" />
+          <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)]/85 px-4 py-2 shadow-sm backdrop-blur-md">
+            <Sparkles className="h-3.5 w-3.5 shrink-0 text-[var(--primary)]" />
 
             <span className="text-[10px] font-bold uppercase tracking-[0.28em] text-[var(--text-secondary)] sm:text-[11px]">
-              Explore • Dream • Discover
+              Built for Explorers
             </span>
           </div>
 

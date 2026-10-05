@@ -4,9 +4,18 @@ import { ChevronDown, Menu, Phone, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { siteConfig } from "@/config/site";
+import { useEffect, useRef, useState } from "react";
+
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { siteConfig } from "@/config/site";
+
+function isRouteActive(pathname: string, href: string) {
+  if (href === "/") {
+    return pathname === "/";
+  }
+
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
 
 export function Navbar() {
   const pathname = usePathname();
@@ -14,131 +23,162 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [packagesOpen, setPackagesOpen] = useState(false);
 
+  const packagesRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     setMobileOpen(false);
     setPackagesOpen(false);
   }, [pathname]);
 
-  const isActive = (href: string) => {
-    if (href === "/") return pathname === "/";
-    return pathname.startsWith(href);
-  };
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        packagesRef.current &&
+        !packagesRef.current.contains(event.target as Node)
+      ) {
+        setPackagesOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const whatsappNumber = siteConfig.phone.replace(/\D/g, "");
 
   return (
     <header className="sticky top-0 z-50">
-      <div className="absolute inset-0 bg-white/[0.04] backdrop-blur-md dark:bg-black/[0.08]" />
-
-      <div className="absolute inset-x-0 bottom-0 h-px bg-white/10 dark:bg-white/5" />
+      <div className="absolute inset-0 border-b border-[var(--border)] bg-[var(--surface)]/72 backdrop-blur-xl supports-[backdrop-filter]:bg-[var(--surface)]/62" />
 
       <nav
-        className="relative mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8"
+        className="relative mx-auto flex min-h-[72px] max-w-7xl items-center justify-between gap-4 px-4 py-2 sm:px-6 lg:min-h-[78px] lg:px-8"
         aria-label="Main navigation"
       >
+        {/* LOGO */}
         <Link
           href="/"
-          className="flex shrink-0 items-center"
+          className="shrink-0"
           aria-label="ExploreYatri home"
         >
           <Image
             src="/logo/explore-yatri-logo.png"
             alt="ExploreYatri logo"
-            width={240}
-            height={150}
+            width={150}
+            height={74}
             priority
-            sizes="120px"
-            className="h-auto w-[95px] object-contain sm:w-[105px] lg:w-[115px]"
+            className="h-auto w-[112px] object-contain sm:w-[122px] lg:w-[130px]"
           />
         </Link>
 
-        <div className="hidden items-center gap-8 md:flex">
-          <Link
-            href="/"
-            className={`nav-link ${isActive("/") ? "active" : ""}`}
-          >
-            Home
-          </Link>
+        {/* DESKTOP NAV */}
+        <div className="hidden items-center gap-7 lg:flex xl:gap-8">
+          {siteConfig.nav.map((item) => {
+            const active = isRouteActive(pathname, item.href);
 
-          <div className="relative">
-            <button
-              type="button"
-              aria-expanded={packagesOpen}
-              aria-controls="packages-menu"
-              className={`nav-link inline-flex items-center gap-1 ${
-                pathname.startsWith("/packages") ? "active" : ""
-              }`}
-              onClick={() => setPackagesOpen((open) => !open)}
-            >
-              Packages
-              <ChevronDown
-                className={`h-4 w-4 transition-transform duration-300 ${
-                  packagesOpen ? "rotate-180" : ""
-                }`}
-              />
-            </button>
-
-            {packagesOpen && (
-              <div
-                id="packages-menu"
-                className="absolute left-1/2 top-full mt-5 min-w-60 -translate-x-1/2 rounded-2xl border border-white/30 bg-white/80 p-2 shadow-[0_24px_60px_rgba(32,20,14,0.13)] backdrop-blur-xl dark:border-white/10 dark:bg-[rgba(29,23,20,0.82)]"
-              >
-                {siteConfig.nav[1].children?.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="block rounded-xl px-4 py-3 text-sm font-medium text-[var(--text-secondary)] transition-all hover:bg-[var(--surface-soft)] hover:text-[var(--primary)]"
+            if (item.children?.length) {
+              return (
+                <div
+                  key={item.href}
+                  ref={packagesRef}
+                  className="relative"
+                >
+                  <button
+                    type="button"
+                    aria-expanded={packagesOpen}
+                    aria-controls="desktop-packages-menu"
+                    onClick={() =>
+                      setPackagesOpen((current) => !current)
+                    }
+                    className={`nav-link inline-flex items-center gap-1.5 ${
+                      active ? "active" : ""
+                    }`}
                   >
                     {item.label}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
 
-          <Link
-            href="/destinations"
-            className={`nav-link ${isActive("/destinations") ? "active" : ""}`}
-          >
-            Destinations
-          </Link>
+                    <ChevronDown
+                      className={`h-4 w-4 transition-transform duration-300 ${
+                        packagesOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
 
-          <Link
-            href="/about"
-            className={`nav-link ${isActive("/about") ? "active" : ""}`}
-          >
-            About Us
-          </Link>
+                  {packagesOpen ? (
+                    <div
+                      id="desktop-packages-menu"
+                      className="absolute left-1/2 top-full mt-5 w-64 -translate-x-1/2 overflow-hidden rounded-[22px] border border-[var(--border)] bg-[var(--surface)]/96 p-2 shadow-[0_24px_60px_rgba(60,30,12,0.14)] backdrop-blur-xl"
+                    >
+                      {item.children.map((child) => {
+                        const childActive = isRouteActive(
+                          pathname,
+                          child.href
+                        );
 
-          <Link
-            href="/contact"
-            className={`nav-link ${isActive("/contact") ? "active" : ""}`}
-          >
-            Contact Us
-          </Link>
+                        return (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            className={`block rounded-2xl px-4 py-3 text-sm font-medium transition-all duration-200 ${
+                              childActive
+                                ? "bg-[var(--primary-soft)] text-[var(--primary)]"
+                                : "text-[var(--text-secondary)] hover:bg-[var(--surface-soft)] hover:text-[var(--text-primary)]"
+                            }`}
+                          >
+                            {child.label}
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  ) : null}
+                </div>
+              );
+            }
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`nav-link ${active ? "active" : ""}`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </div>
 
-        <div className="hidden items-center gap-3 md:flex">
+        {/* DESKTOP ACTIONS */}
+        <div className="hidden shrink-0 items-center gap-3 lg:flex">
           <ThemeToggle />
 
-          <Link
-            href="/contact"
-            className="group inline-flex items-center gap-2 rounded-full bg-[var(--primary)] px-5 py-3 text-sm font-bold text-white shadow-[0_14px_34px_var(--primary-shadow)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[var(--primary-hover)]"
+          <a
+            href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+              "Hello ExploreYatri, I would like to plan a trip."
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-[var(--primary)] px-5 py-3 text-sm font-bold text-white shadow-[0_16px_36px_var(--primary-shadow)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[var(--primary-hover)]"
           >
             <Phone className="h-4 w-4" />
             Plan My Trip
-          </Link>
+          </a>
         </div>
 
-        <div className="flex items-center gap-2 md:hidden">
+        {/* MOBILE ACTIONS */}
+        <div className="flex shrink-0 items-center gap-2 lg:hidden">
           <ThemeToggle />
 
           <button
             type="button"
             aria-label={
-              mobileOpen ? "Close navigation menu" : "Open navigation menu"
+              mobileOpen
+                ? "Close navigation menu"
+                : "Open navigation menu"
             }
             aria-expanded={mobileOpen}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-white/30 text-[var(--text-primary)] shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-black/20"
-            onClick={() => setMobileOpen((open) => !open)}
+            onClick={() => setMobileOpen((current) => !current)}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)]/85 text-[var(--text-primary)] shadow-sm backdrop-blur-md transition-all duration-300 hover:border-[var(--primary)] hover:text-[var(--primary)]"
           >
             {mobileOpen ? (
               <X className="h-5 w-5" />
@@ -149,53 +189,114 @@ export function Navbar() {
         </div>
       </nav>
 
-      {mobileOpen && (
-        <div className="border-t border-white/20 bg-white/75 backdrop-blur-xl md:hidden dark:border-white/10 dark:bg-[rgba(19,14,12,0.8)]">
-          <div className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6">
-            <Link href="/" className="nav-link-mobile">
-              Home
-            </Link>
+      {/* MOBILE MENU */}
+      {mobileOpen ? (
+        <div className="relative border-t border-[var(--border)] bg-[var(--surface)]/96 backdrop-blur-xl lg:hidden">
+          <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6">
+            <div className="flex flex-col gap-1">
+              {siteConfig.nav.map((item) => {
+                const active = isRouteActive(pathname, item.href);
 
-            <div className="my-1 rounded-2xl border border-[var(--border)] bg-[var(--surface-soft)]/85 p-3 backdrop-blur-md">
-              <p className="mb-2 px-2 text-xs font-bold uppercase tracking-[0.2em] text-[var(--primary)]">
-                Packages
-              </p>
+                if (item.children?.length) {
+                  return (
+                    <div
+                      key={item.href}
+                      className="rounded-[20px] border border-[var(--border)] bg-[var(--surface-soft)] p-2"
+                    >
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setPackagesOpen(
+                            (current) => !current
+                          )
+                        }
+                        className={`flex w-full items-center justify-between rounded-2xl px-3 py-3 text-left text-sm font-semibold ${
+                          active
+                            ? "text-[var(--primary)]"
+                            : "text-[var(--text-primary)]"
+                        }`}
+                      >
+                        {item.label}
 
-              <div className="flex flex-col gap-1">
-                {siteConfig.nav[1].children?.map((item) => (
+                        <ChevronDown
+                          className={`h-4 w-4 transition-transform duration-300 ${
+                            packagesOpen
+                              ? "rotate-180"
+                              : ""
+                          }`}
+                        />
+                      </button>
+
+                      {packagesOpen ? (
+                        <div className="mt-1 space-y-1">
+                          <Link
+                            href="/packages"
+                            className={`nav-link-mobile ${
+                              pathname === "/packages"
+                                ? "bg-[var(--primary-soft)] text-[var(--primary)]"
+                                : ""
+                            }`}
+                          >
+                            All Packages
+                          </Link>
+
+                          {item.children.map((child) => {
+                            const childActive =
+                              isRouteActive(
+                                pathname,
+                                child.href
+                              );
+
+                            return (
+                              <Link
+                                key={child.href}
+                                href={child.href}
+                                className={`nav-link-mobile ${
+                                  childActive
+                                    ? "bg-[var(--primary-soft)] text-[var(--primary)]"
+                                    : ""
+                                }`}
+                              >
+                                {child.label}
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      ) : null}
+                    </div>
+                  );
+                }
+
+                return (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="nav-link-mobile"
+                    className={`nav-link-mobile ${
+                      active
+                        ? "bg-[var(--primary-soft)] font-semibold text-[var(--primary)]"
+                        : ""
+                    }`}
                   >
                     {item.label}
                   </Link>
-                ))}
-              </div>
+                );
+              })}
             </div>
 
-            <Link href="/destinations" className="nav-link-mobile">
-              Destinations
-            </Link>
-
-            <Link href="/about" className="nav-link-mobile">
-              About Us
-            </Link>
-
-            <Link href="/contact" className="nav-link-mobile">
-              Contact Us
-            </Link>
-
-            <Link
-              href="/contact"
-              className="mt-3 inline-flex items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-5 py-3.5 text-sm font-bold text-white"
+            <a
+              href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+                "Hello ExploreYatri, I would like to plan a trip."
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-5 py-3.5 text-sm font-bold text-white shadow-[0_14px_32px_var(--primary-shadow)]"
             >
               <Phone className="h-4 w-4" />
               Plan My Trip
-            </Link>
+            </a>
           </div>
         </div>
-      )}
+      ) : null}
     </header>
   );
 }

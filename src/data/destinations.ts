@@ -1,52 +1,159 @@
-export interface Destination {
-  id: string;
-  name: string;
-  location: string;
-  image: string;
-  description: string;
-}
+import type { Destination } from "@/types/destination";
 
 export const destinations: Destination[] = [
   {
-    id: "kashmir",
+    id: "destination-001",
     name: "Kashmir",
-    location: "Himalayan splendour",
-    image: "/images/hero-travel.svg",
-    description: "Lakes, gardens, and crisp mountain air.",
+    slug: "kashmir",
+
+    state: "Jammu & Kashmir",
+    country: "India",
+
+    category: "mountains",
+
+    shortDescription:
+      "Snow-covered mountains, peaceful lakes, valleys and unforgettable Himalayan scenery.",
+
+    description:
+      "Explore Srinagar, Pahalgam, Gulmarg, Sonamarg and the beautiful landscapes that make Kashmir one of India's most memorable travel destinations.",
+
+    image: "/images/packages/kashmir-explorer.jpg",
+    imageAlt: "Beautiful Kashmir landscape and Dal Lake",
+
+    featured: true,
+    status: "active",
+
+    createdAt: "2026-10-05",
+    updatedAt: "2026-10-05",
   },
+
   {
-    id: "goa",
-    name: "Goa",
-    location: "Coastal elegance",
-    image: "/images/hero-travel.svg",
-    description: "Golden beaches and effortless island energy.",
+    id: "destination-002",
+    name: "Manali",
+    slug: "manali",
+
+    state: "Himachal Pradesh",
+    country: "India",
+
+    category: "mountains",
+
+    shortDescription:
+      "Snow points, mountain roads, adventure activities and beautiful Himalayan views.",
+
+    description:
+      "Discover Manali, Solang Valley, Atal Tunnel, Rohtang and nearby Himalayan experiences.",
+
+    image: "/images/packages/manali-solang.jpg",
+    imageAlt: "Beautiful mountain landscape in Manali",
+
+    featured: true,
+    status: "active",
+
+    createdAt: "2026-10-05",
+    updatedAt: "2026-10-05",
   },
+
   {
-    id: "kerala",
-    name: "Kerala",
-    location: "Green serenity",
-    image: "/images/hero-travel.svg",
-    description: "Backwaters, tea hills, and slow-living charm.",
+    id: "destination-003",
+    name: "Jaisalmer",
+    slug: "jaisalmer",
+
+    state: "Rajasthan",
+    country: "India",
+
+    category: "desert",
+
+    shortDescription:
+      "Golden dunes, desert camps, royal heritage and traditional Rajasthan experiences.",
+
+    description:
+      "Experience Jaisalmer Fort, desert safari, cultural evenings, Longewala and the vast Thar Desert.",
+
+    image: "/images/packages/jaisalmer-desert.jpg",
+    imageAlt: "Golden desert dunes in Jaisalmer Rajasthan",
+
+    featured: true,
+    status: "active",
+
+    createdAt: "2026-10-05",
+    updatedAt: "2026-10-05",
   },
+
   {
-    id: "dubai",
-    name: "Dubai",
-    location: "City of modern wonders",
-    image: "/images/hero-travel.svg",
-    description: "Luxury, landmarks, and unforgettable skylines.",
+    id: "destination-004",
+    name: "Jibhi & Tirthan",
+    slug: "jibhi-tirthan",
+
+    state: "Himachal Pradesh",
+    country: "India",
+
+    category: "nature",
+
+    shortDescription:
+      "Peaceful rivers, forests, waterfalls and quiet mountain villages.",
+
+    description:
+      "Explore Jibhi, Tirthan Valley, Jalori Pass, Serolsar Lake and refreshing Himalayan nature experiences.",
+
+    image: "/images/packages/jibhi-tirthan.jpg",
+    imageAlt: "Green mountain valley and river in Jibhi Tirthan",
+
+    featured: true,
+    status: "active",
+
+    createdAt: "2026-10-05",
+    updatedAt: "2026-10-05",
   },
+
   {
-    id: "bali",
-    name: "Bali",
-    location: "Island escapes",
-    image: "/images/hero-travel.svg",
-    description: "Temple towns, beaches, and tropical calm.",
+    id: "destination-005",
+    name: "Kedarnath",
+    slug: "kedarnath",
+
+    state: "Uttarakhand",
+    country: "India",
+
+    category: "pilgrimage",
+
+    shortDescription:
+      "A spiritual Himalayan journey combining devotion, trekking and dramatic mountain scenery.",
+
+    description:
+      "Travel through Guptkashi and Gaurikund before trekking towards the sacred Kedarnath Temple.",
+
+    image: "/images/packages/kedarnath-yatra.jpg",
+    imageAlt: "Kedarnath Temple surrounded by Himalayan mountains",
+
+    featured: true,
+    status: "active",
+
+    createdAt: "2026-10-05",
+    updatedAt: "2026-10-05",
   },
+
   {
-    id: "thailand",
-    name: "Thailand",
-    location: "Sunny adventures",
-    image: "/images/hero-travel.svg",
-    description: "A gentle mix of culture, coast, and flavour.",
+    id: "destination-006",
+    name: "Udaipur",
+    slug: "udaipur",
+
+    state: "Rajasthan",
+    country: "India",
+
+    category: "heritage",
+
+    shortDescription:
+      "Royal palaces, lakes, heritage architecture and classic Rajasthan charm.",
+
+    description:
+      "Discover Udaipur's City Palace, lakes, historic attractions and nearby Mount Abu.",
+
+    image: "/images/packages/udaipur-mount-abu.jpg",
+    imageAlt: "Beautiful heritage architecture and lake in Udaipur",
+
+    featured: true,
+    status: "active",
+
+    createdAt: "2026-10-05",
+    updatedAt: "2026-10-05",
   },
 ];
