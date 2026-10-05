@@ -3,9 +3,10 @@
 import { FormEvent, useEffect, useState } from "react";
 import {
   CalendarDays,
+  ChevronDown,
   MapPin,
   MessageCircle,
-  Phone,
+  Mountain,
   Sparkles,
   User,
   Users,
@@ -30,8 +31,8 @@ const initialForm: PopupForm = {
   travellers: "",
 };
 
-const fieldClass =
-  "w-full rounded-xl border border-[var(--border)] bg-[var(--background)]/68 px-3 py-2 text-[12px] text-[var(--text-primary)] outline-none backdrop-blur-md transition-all placeholder:text-[var(--text-secondary)]/65 focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--primary-soft)] sm:rounded-2xl sm:px-4 sm:py-3 sm:text-sm";
+const inputBase =
+  "h-12 w-full rounded-2xl border border-black/[0.04] bg-white/80 px-4 text-[13px] text-[#252525] shadow-[0_5px_18px_rgba(41,24,14,0.04)] outline-none backdrop-blur-xl transition placeholder:text-[#777] focus:border-[#f47721]/35 focus:ring-4 focus:ring-[#f47721]/10 sm:h-[54px] sm:text-sm";
 
 export function ContactPopup() {
   const [open, setOpen] = useState(false);
@@ -111,7 +112,7 @@ export function ContactPopup() {
       "I would like to plan a trip.",
       "",
       `Name: ${form.name}`,
-      `Phone: ${form.phone}`,
+      `Phone / WhatsApp: ${form.phone}`,
       `Destination: ${form.destination}`,
       `Travel Date: ${form.travelDate || "Not decided yet"}`,
       `Travellers: ${form.travellers || "Not decided yet"}`,
@@ -132,81 +133,97 @@ export function ContactPopup() {
 
   return (
     <div
-      className="fixed inset-0 z-[200] flex items-center justify-center bg-black/30 p-2.5 backdrop-blur-[6px] sm:p-4"
+      className="fixed inset-0 z-[200] flex items-center justify-center bg-black/40 p-3 backdrop-blur-[5px] sm:p-4"
       role="dialog"
       aria-modal="true"
       aria-labelledby="contact-popup-title"
       onClick={() => setOpen(false)}
     >
       <div
-        className="relative w-full max-w-[350px] overflow-hidden rounded-[22px] border border-white/25 bg-[var(--surface)]/80 shadow-[0_24px_80px_rgba(0,0,0,0.24)] backdrop-blur-2xl sm:max-w-[500px] sm:rounded-[30px]"
+        className="relative w-full max-w-[360px] overflow-hidden rounded-[28px] border border-white/60 bg-[#fffaf4]/94 shadow-[0_28px_90px_rgba(0,0,0,0.28)] backdrop-blur-2xl sm:max-w-[560px] sm:rounded-[34px]"
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="pointer-events-none absolute -right-16 -top-16 h-36 w-36 rounded-full bg-[var(--primary)]/18 blur-3xl sm:h-52 sm:w-52" />
-        <div className="pointer-events-none absolute -bottom-20 -left-16 h-36 w-36 rounded-full bg-[var(--accent)]/12 blur-3xl sm:h-52 sm:w-52" />
+        {/* subtle warm decorative glow */}
+        <div className="pointer-events-none absolute -right-20 -top-20 h-52 w-52 rounded-full bg-[#f8cfa8]/35 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-24 -left-20 h-52 w-52 rounded-full bg-[#f47721]/10 blur-3xl" />
+
+        {/* decorative mountains */}
+        <div className="pointer-events-none absolute right-12 top-[92px] hidden text-[#9c836f]/20 sm:block">
+          <Mountain className="h-20 w-20 stroke-[1.2]" />
+        </div>
 
         <button
           type="button"
           onClick={() => setOpen(false)}
-          className="absolute right-2.5 top-2.5 z-20 flex h-7 w-7 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)]/70 text-[var(--text-primary)] backdrop-blur-md transition-all hover:border-[var(--primary)] hover:text-[var(--primary)] sm:right-4 sm:top-4 sm:h-10 sm:w-10"
           aria-label="Close contact form"
+          className="absolute right-4 top-4 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-white/80 text-[#3f3f3f] shadow-sm backdrop-blur-md transition hover:bg-white sm:h-10 sm:w-10"
         >
-          <X className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+          <X className="h-4 w-4" />
         </button>
 
-        <div className="relative max-h-[82vh] overflow-y-auto p-3.5 sm:max-h-[88vh] sm:p-7">
-          <div className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--background)]/50 px-2.5 py-1 backdrop-blur-md">
-            <Sparkles className="h-3 w-3 text-[var(--primary)]" />
-            <span className="text-[8px] font-bold uppercase tracking-[0.16em] text-[var(--primary)] sm:text-[10px]">
+        <div className="relative max-h-[88vh] overflow-y-auto px-5 pb-5 pt-5 sm:px-8 sm:pb-7 sm:pt-7">
+          {/* label */}
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#f47721]/10 bg-white/75 px-3.5 py-2 shadow-sm backdrop-blur-md">
+            <Sparkles className="h-3.5 w-3.5 text-[#f47721]" />
+            <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-[#dc651d] sm:text-[10px]">
               Plan Your Trip
             </span>
           </div>
 
+          {/* heading */}
           <h2
             id="contact-popup-title"
-            className="mt-2 pr-8 text-[21px] font-bold leading-[1.02] text-[var(--text-primary)] sm:mt-4 sm:pr-12 sm:text-4xl"
+            className="mt-4 max-w-[470px] pr-8 text-[27px] font-bold leading-[1.02] tracking-[-0.03em] text-[#111] sm:mt-5 sm:text-[42px]"
           >
-            Where would you like to
-            <span className="hero-gradient-text block">
-              travel next?
+            Where will your next
+            <span className="block">
+              <span className="text-[#f47721]">journey</span> take you?
             </span>
           </h2>
 
-          <p className="mt-1.5 max-w-md text-[11px] leading-4.5 text-[var(--text-secondary)] sm:mt-3 sm:text-sm sm:leading-6">
-            Share a few details and continue directly with our team on WhatsApp.
+          <p className="mt-3 max-w-[460px] text-[12px] leading-5 text-[#686868] sm:text-[15px] sm:leading-6">
+            Tell us a few details and our travel experts will help you plan the
+            perfect trip.
           </p>
 
-          <form onSubmit={handleSubmit} className="mt-3 space-y-2 sm:mt-6 sm:space-y-3">
-            <div className="grid gap-2 sm:grid-cols-2 sm:gap-3">
-              <div className="relative">
-                <User className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[var(--primary)] sm:left-4 sm:h-4 sm:w-4" />
-                <input
-                  type="text"
-                  value={form.name}
-                  onChange={(event) =>
-                    updateField("name", event.target.value)
-                  }
-                  placeholder="Your name"
-                  className={`${fieldClass} pl-8 sm:pl-11`}
-                />
-              </div>
+          <form
+            onSubmit={handleSubmit}
+            className="mt-5 space-y-3 sm:mt-6 sm:space-y-3.5"
+          >
+            {/* name */}
+            <div className="relative">
+              <User className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#6b6b6b]" />
 
-              <div className="relative">
-                <Phone className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[var(--primary)] sm:left-4 sm:h-4 sm:w-4" />
-                <input
-                  type="tel"
-                  value={form.phone}
-                  onChange={(event) =>
-                    updateField("phone", event.target.value)
-                  }
-                  placeholder="Phone / WhatsApp"
-                  className={`${fieldClass} pl-8 sm:pl-11`}
-                />
-              </div>
+              <input
+                type="text"
+                value={form.name}
+                onChange={(event) =>
+                  updateField("name", event.target.value)
+                }
+                placeholder="Your Name"
+                className={`${inputBase} pl-11`}
+              />
             </div>
 
+            {/* phone */}
             <div className="relative">
-              <MapPin className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[var(--primary)] sm:left-4 sm:h-4 sm:w-4" />
+              <MessageCircle className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#6b6b6b]" />
+
+              <input
+                type="tel"
+                value={form.phone}
+                onChange={(event) =>
+                  updateField("phone", event.target.value)
+                }
+                placeholder="Phone / WhatsApp"
+                className={`${inputBase} pl-11`}
+              />
+            </div>
+
+            {/* destination */}
+            <div className="relative">
+              <MapPin className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#6b6b6b]" />
+
               <input
                 type="text"
                 value={form.destination}
@@ -214,53 +231,75 @@ export function ContactPopup() {
                   updateField("destination", event.target.value)
                 }
                 placeholder="Destination e.g. Kashmir, Manali"
-                className={`${fieldClass} pl-8 sm:pl-11`}
+                className={`${inputBase} pl-11`}
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-2 sm:gap-3">
-              <div className="relative">
-                <CalendarDays className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[var(--primary)] sm:left-4 sm:h-4 sm:w-4" />
+            {/* date + travellers */}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="relative min-w-0">
+                <CalendarDays className="pointer-events-none absolute left-4 top-1/2 z-10 h-4 w-4 -translate-y-1/2 text-[#6b6b6b]" />
+
                 <input
                   type="date"
                   value={form.travelDate}
                   onChange={(event) =>
                     updateField("travelDate", event.target.value)
                   }
-                  className={`${fieldClass} pl-8 sm:pl-11`}
+                  aria-label="Travel Date"
+                  className={`${inputBase} min-w-0 pl-11 pr-2 text-[11px] sm:text-sm`}
                 />
               </div>
 
-              <div className="relative">
-                <Users className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[var(--primary)] sm:left-4 sm:h-4 sm:w-4" />
-                <input
-                  type="number"
-                  min="1"
+              <div className="relative min-w-0">
+                <Users className="pointer-events-none absolute left-4 top-1/2 z-10 h-4 w-4 -translate-y-1/2 text-[#6b6b6b]" />
+                <ChevronDown className="pointer-events-none absolute right-4 top-1/2 z-10 h-4 w-4 -translate-y-1/2 text-[#6b6b6b]" />
+
+                <select
                   value={form.travellers}
                   onChange={(event) =>
                     updateField("travellers", event.target.value)
                   }
-                  placeholder="Travellers"
-                  className={`${fieldClass} pl-8 sm:pl-11`}
-                />
+                  aria-label="Travellers"
+                  className={`${inputBase} appearance-none pl-11 pr-10`}
+                >
+                  <option value="">Travellers</option>
+                  <option value="1">1 Traveller</option>
+                  <option value="2">2 Travellers</option>
+                  <option value="3">3 Travellers</option>
+                  <option value="4">4 Travellers</option>
+                  <option value="5">5 Travellers</option>
+                  <option value="6+">6+ Travellers</option>
+                </select>
               </div>
             </div>
 
+            {/* CTA */}
             <button
               type="submit"
-              className="group mt-0.5 inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-4 py-2 text-[12px] font-bold text-white shadow-[0_12px_26px_var(--primary-shadow)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[var(--primary-hover)] sm:mt-2 sm:min-h-12 sm:px-5 sm:py-3 sm:text-sm"
+              className="group mt-1 inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[linear-gradient(90deg,#f47721,#ff8614)] px-5 text-sm font-bold text-white shadow-[0_16px_34px_rgba(244,119,33,0.27)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(244,119,33,0.34)] sm:h-14 sm:text-base"
             >
-              <MessageCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-              Continue on WhatsApp
+              <MessageCircle className="h-5 w-5" />
+              Plan My Trip on WhatsApp
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
             </button>
 
-            <button
-              type="button"
-              onClick={() => setOpen(false)}
-              className="w-full py-0 text-[10px] font-medium text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)] sm:py-1 sm:text-xs"
-            >
-              Maybe later
-            </button>
+            {/* later */}
+            <div className="pt-1 text-center">
+              <p className="text-[10px] text-[#a0a0a0] sm:text-xs">
+                Prefer to browse first?
+              </p>
+
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="mt-0.5 text-[12px] font-medium text-[#575757] transition-colors hover:text-[#f47721] sm:text-sm"
+              >
+                Maybe later
+              </button>
+            </div>
           </form>
         </div>
       </div>
