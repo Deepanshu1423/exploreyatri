@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 
 import "./globals.css";
 
+import { ContactPopup } from "@/components/contact/ContactPopup";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 
 const inter = Inter({
@@ -42,7 +43,11 @@ export default function RootLayout({
       <body
         className={`${inter.variable} bg-[var(--background)] text-[var(--text-primary)] antialiased`}
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          {children}
+
+          <ContactPopup />
+        </ThemeProvider>
       </body>
     </html>
   );

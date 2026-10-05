@@ -4,6 +4,7 @@ import { LatestBlogs } from "@/components/home/LatestBlogs";
 import { PackageCategories } from "@/components/home/PackageCategories";
 import { PopularDestinations } from "@/components/home/PopularDestinations";
 import { TravelCTA } from "@/components/home/TravelCTA";
+import { TravellerMemories } from "@/components/home/TravellerMemories";
 import { WhyChooseUs } from "@/components/home/WhyChooseUs";
 
 import { Footer } from "@/components/layout/Footer";
@@ -27,6 +28,8 @@ export default function HomePage() {
         <PopularDestinations />
 
         <WhyChooseUs />
+
+        <TravellerMemories />
 
         <LatestBlogs />
 
