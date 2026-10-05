@@ -7,6 +7,7 @@ import {
   MessageCircle,
   Phone,
   Sparkles,
+  User,
   Users,
   X,
 } from "lucide-react";
@@ -30,7 +31,7 @@ const initialForm: PopupForm = {
 };
 
 const fieldClass =
-  "w-full rounded-2xl border border-[var(--border)] bg-[var(--background)]/70 px-4 py-3 text-sm text-[var(--text-primary)] outline-none backdrop-blur-md transition-all placeholder:text-[var(--text-secondary)]/70 focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--primary-soft)]";
+  "w-full rounded-xl border border-[var(--border)] bg-[var(--background)]/68 px-3 py-2 text-[12px] text-[var(--text-primary)] outline-none backdrop-blur-md transition-all placeholder:text-[var(--text-secondary)]/65 focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--primary-soft)] sm:rounded-2xl sm:px-4 sm:py-3 sm:text-sm";
 
 export function ContactPopup() {
   const [open, setOpen] = useState(false);
@@ -131,40 +132,39 @@ export function ContactPopup() {
 
   return (
     <div
-      className="fixed inset-0 z-[200] flex items-center justify-center bg-black/35 p-4 backdrop-blur-[7px]"
+      className="fixed inset-0 z-[200] flex items-center justify-center bg-black/30 p-2.5 backdrop-blur-[6px] sm:p-4"
       role="dialog"
       aria-modal="true"
       aria-labelledby="contact-popup-title"
       onClick={() => setOpen(false)}
     >
       <div
-        className="relative w-full max-w-[520px] overflow-hidden rounded-[30px] border border-white/30 bg-[var(--surface)]/82 shadow-[0_30px_100px_rgba(0,0,0,0.28)] backdrop-blur-2xl"
+        className="relative w-full max-w-[350px] overflow-hidden rounded-[22px] border border-white/25 bg-[var(--surface)]/80 shadow-[0_24px_80px_rgba(0,0,0,0.24)] backdrop-blur-2xl sm:max-w-[500px] sm:rounded-[30px]"
         onClick={(event) => event.stopPropagation()}
       >
-        {/* Decorative transparent glow */}
-        <div className="pointer-events-none absolute -right-20 -top-20 h-52 w-52 rounded-full bg-[var(--primary)]/20 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-24 -left-20 h-52 w-52 rounded-full bg-[var(--accent)]/15 blur-3xl" />
+        <div className="pointer-events-none absolute -right-16 -top-16 h-36 w-36 rounded-full bg-[var(--primary)]/18 blur-3xl sm:h-52 sm:w-52" />
+        <div className="pointer-events-none absolute -bottom-20 -left-16 h-36 w-36 rounded-full bg-[var(--accent)]/12 blur-3xl sm:h-52 sm:w-52" />
 
         <button
           type="button"
           onClick={() => setOpen(false)}
-          className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)]/70 text-[var(--text-primary)] backdrop-blur-md transition-all hover:border-[var(--primary)] hover:text-[var(--primary)]"
+          className="absolute right-2.5 top-2.5 z-20 flex h-7 w-7 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)]/70 text-[var(--text-primary)] backdrop-blur-md transition-all hover:border-[var(--primary)] hover:text-[var(--primary)] sm:right-4 sm:top-4 sm:h-10 sm:w-10"
           aria-label="Close contact form"
         >
-          <X className="h-4 w-4" />
+          <X className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
         </button>
 
-        <div className="relative p-5 sm:p-7">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--background)]/55 px-3.5 py-2 backdrop-blur-md">
-            <Sparkles className="h-3.5 w-3.5 text-[var(--primary)]" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-[var(--primary)]">
+        <div className="relative max-h-[82vh] overflow-y-auto p-3.5 sm:max-h-[88vh] sm:p-7">
+          <div className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--background)]/50 px-2.5 py-1 backdrop-blur-md">
+            <Sparkles className="h-3 w-3 text-[var(--primary)]" />
+            <span className="text-[8px] font-bold uppercase tracking-[0.16em] text-[var(--primary)] sm:text-[10px]">
               Plan Your Trip
             </span>
           </div>
 
           <h2
             id="contact-popup-title"
-            className="mt-4 pr-12 text-3xl font-semibold leading-tight text-[var(--text-primary)] sm:text-4xl"
+            className="mt-2 pr-8 text-[21px] font-bold leading-[1.02] text-[var(--text-primary)] sm:mt-4 sm:pr-12 sm:text-4xl"
           >
             Where would you like to
             <span className="hero-gradient-text block">
@@ -172,15 +172,14 @@ export function ContactPopup() {
             </span>
           </h2>
 
-          <p className="mt-3 max-w-md text-sm leading-6 text-[var(--text-secondary)]">
-            Share a few details and continue directly with our team on
-            WhatsApp.
+          <p className="mt-1.5 max-w-md text-[11px] leading-4.5 text-[var(--text-secondary)] sm:mt-3 sm:text-sm sm:leading-6">
+            Share a few details and continue directly with our team on WhatsApp.
           </p>
 
-          <form onSubmit={handleSubmit} className="mt-6 space-y-3">
-            <div className="grid gap-3 sm:grid-cols-2">
+          <form onSubmit={handleSubmit} className="mt-3 space-y-2 sm:mt-6 sm:space-y-3">
+            <div className="grid gap-2 sm:grid-cols-2 sm:gap-3">
               <div className="relative">
-                <Phone className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--primary)]" />
+                <User className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[var(--primary)] sm:left-4 sm:h-4 sm:w-4" />
                 <input
                   type="text"
                   value={form.name}
@@ -188,12 +187,12 @@ export function ContactPopup() {
                     updateField("name", event.target.value)
                   }
                   placeholder="Your name"
-                  className={`${fieldClass} pl-11`}
+                  className={`${fieldClass} pl-8 sm:pl-11`}
                 />
               </div>
 
               <div className="relative">
-                <Phone className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--primary)]" />
+                <Phone className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[var(--primary)] sm:left-4 sm:h-4 sm:w-4" />
                 <input
                   type="tel"
                   value={form.phone}
@@ -201,39 +200,39 @@ export function ContactPopup() {
                     updateField("phone", event.target.value)
                   }
                   placeholder="Phone / WhatsApp"
-                  className={`${fieldClass} pl-11`}
+                  className={`${fieldClass} pl-8 sm:pl-11`}
                 />
               </div>
             </div>
 
             <div className="relative">
-              <MapPin className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--primary)]" />
+              <MapPin className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[var(--primary)] sm:left-4 sm:h-4 sm:w-4" />
               <input
                 type="text"
                 value={form.destination}
                 onChange={(event) =>
                   updateField("destination", event.target.value)
                 }
-                placeholder="Destination e.g. Kashmir, Manali, Bali"
-                className={`${fieldClass} pl-11`}
+                placeholder="Destination e.g. Kashmir, Manali"
+                className={`${fieldClass} pl-8 sm:pl-11`}
               />
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-2">
+            <div className="grid grid-cols-2 gap-2 sm:gap-3">
               <div className="relative">
-                <CalendarDays className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--primary)]" />
+                <CalendarDays className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[var(--primary)] sm:left-4 sm:h-4 sm:w-4" />
                 <input
                   type="date"
                   value={form.travelDate}
                   onChange={(event) =>
                     updateField("travelDate", event.target.value)
                   }
-                  className={`${fieldClass} pl-11`}
+                  className={`${fieldClass} pl-8 sm:pl-11`}
                 />
               </div>
 
               <div className="relative">
-                <Users className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--primary)]" />
+                <Users className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[var(--primary)] sm:left-4 sm:h-4 sm:w-4" />
                 <input
                   type="number"
                   min="1"
@@ -242,23 +241,23 @@ export function ContactPopup() {
                     updateField("travellers", event.target.value)
                   }
                   placeholder="Travellers"
-                  className={`${fieldClass} pl-11`}
+                  className={`${fieldClass} pl-8 sm:pl-11`}
                 />
               </div>
             </div>
 
             <button
               type="submit"
-              className="group mt-2 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-5 py-3 text-sm font-bold text-white shadow-[0_16px_38px_var(--primary-shadow)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[var(--primary-hover)]"
+              className="group mt-0.5 inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-4 py-2 text-[12px] font-bold text-white shadow-[0_12px_26px_var(--primary-shadow)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[var(--primary-hover)] sm:mt-2 sm:min-h-12 sm:px-5 sm:py-3 sm:text-sm"
             >
-              <MessageCircle className="h-4 w-4" />
+              <MessageCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
               Continue on WhatsApp
             </button>
 
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="w-full py-1 text-xs font-medium text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
+              className="w-full py-0 text-[10px] font-medium text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)] sm:py-1 sm:text-xs"
             >
               Maybe later
             </button>
