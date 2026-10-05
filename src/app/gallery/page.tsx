@@ -5,6 +5,7 @@ import path from "node:path";
 import { GalleryGrid } from "@/components/gallery/GalleryGrid";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
+import type { GalleryItem } from "@/types/gallery";
 
 export const metadata: Metadata = {
   title: "Gallery | ExploreYatri",
@@ -14,13 +15,6 @@ export const metadata: Metadata = {
 
 const IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".avif"];
 const VIDEO_EXTENSIONS = [".mp4", ".webm", ".mov"];
-
-export type GalleryItem = {
-  id: string;
-  src: string;
-  type: "image" | "video";
-  alt: string;
-};
 
 function getGalleryItems(): GalleryItem[] {
   const galleryDirectory = path.join(
@@ -47,12 +41,11 @@ function getGalleryItems(): GalleryItem[] {
     .sort((a, b) => b.localeCompare(a))
     .map((fileName, index) => {
       const extension = path.extname(fileName).toLowerCase();
-      const isVideo = VIDEO_EXTENSIONS.includes(extension);
 
       return {
         id: `gallery-${index + 1}`,
         src: `/images/explorephotos/${fileName}`,
-        type: isVideo ? "video" : "image",
+        type: VIDEO_EXTENSIONS.includes(extension) ? "video" : "image",
         alt: `ExploreYatri client travel memory ${index + 1}`,
       };
     });
@@ -66,7 +59,7 @@ export default function GalleryPage() {
       <Navbar />
 
       <main className="bg-[var(--background)]">
-        <section className="theme-section-soft border-b border-[var(--border)] py-12 sm:py-14 lg:py-16">
+        <section className="theme-section-soft border-b border-[var(--border)] py-11 sm:py-14 lg:py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-4xl text-center">
               <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-[var(--primary)] sm:text-xs sm:tracking-[0.28em]">
@@ -81,8 +74,8 @@ export default function GalleryPage() {
               </h1>
 
               <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[var(--text-secondary)] sm:text-base">
-                A collection of real travel moments, happy memories and
-                unforgettable experiences shared by our travellers.
+                Real travel moments, happy memories and unforgettable
+                experiences shared by our travellers.
               </p>
             </div>
           </div>

@@ -1,29 +1,47 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
-import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import { Inter } from "next/font/google";
+
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
+import { ThemeProvider } from "@/components/theme/ThemeProvider";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
-  title: "ExploreYatri | Domestic & International Holiday Packages",
+  title: {
+    default: "ExploreYatri | Journeys Made Worth Remembering",
+    template: "%s | ExploreYatri",
+  },
+
   description:
-    "Explore curated domestic and international holiday packages with ExploreYatri and plan memorable journeys designed around you.",
+    "Explore domestic and international travel packages, destinations, travel guides and memorable journeys with ExploreYatri.",
+
+  keywords: [
+    "ExploreYatri",
+    "travel agency",
+    "holiday packages",
+    "India travel packages",
+    "international travel packages",
+    "Kashmir packages",
+    "Manali packages",
+    "travel planner",
+  ],
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${playfair.variable} h-full`}>
-      <body className="min-h-full bg-[var(--background)] text-[var(--text-primary)] antialiased">
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${inter.variable} bg-[var(--background)] text-[var(--text-primary)] antialiased`}
+      >
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
