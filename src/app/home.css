@@ -73,6 +73,54 @@
 .home-cta h2 { font-size: 28px; font-weight: 600; margin: 0 0 8px; }
 .home-cta p { color: #d5e0e0; font-size: 14px; line-height: 1.5; margin: 0; }
 .home-cta .home-button { padding: 13px 26px; font-size: 14px; }
+.home-company { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 70px); align-items: center; padding-block: 64px; }
+.home-company-copy { min-width: 0; }
+.home-company h2, .home-review-platforms h2 { font-size: clamp(28px, 3.3vw, 43px); line-height: 1.18; margin: 0; font-weight: 700; }
+.home-company h2 span, .home-review-platforms h2 span { color: #b9432c; }
+.home-company-intro { font-size: 15px; line-height: 1.7; color: #596363; margin: 18px 0 28px; }
+.home-company-benefits { display: grid; gap: 25px; }
+.home-company-benefit { display: flex; gap: 16px; align-items: flex-start; }
+.home-company-icon { display: flex; align-items: center; justify-content: center; flex: 0 0 52px; height: 52px; border-radius: 50%; color: #326a54; background: #e0ece3; }
+.home-company-benefit:nth-child(2) .home-company-icon { background: #f9e3d8; color: #b54c2a; }
+.home-company-benefit:nth-child(3) .home-company-icon { background: #f3ebd1; color: #8b7138; }
+.home-company-benefit h3 { font-size: 19px; font-weight: 650; margin: 0 0 7px; }
+.home-company-benefit p { font-size: 14px; line-height: 1.6; margin: 0; color: #596363; }
+.home-company-link { display: inline-flex; align-items: center; gap: 10px; color: #ad4324; font-weight: 650; font-size: 14px; margin-top: 26px; }
+.home-company-link:hover { color: #e95518; }
+.home-company-link:focus-visible { outline: 2px solid #e95518; outline-offset: 6px; }
+.home-company-photo { position: relative; width: 100%; min-width: 0; min-height: 510px; border-radius: 24px; overflow: hidden; align-self: stretch; }
+.home-company-photo img { object-fit: cover; }
+.home-company-photo-caption { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 32px; color: white; background: linear-gradient(0deg, #07262ae6, transparent 65%); }
+.home-company-photo-caption span { font-size: 13px; color: #d4e5de; margin-bottom: 12px; }
+.home-company-photo-caption strong { font-size: clamp(25px, 2.5vw, 34px); line-height: 1.2; }
+.home-review-platforms { position: relative; isolation: isolate; overflow: hidden; padding: 48px 0 42px; background: #ebedf4; text-align: center; }
+.home-review-globe { position: absolute; width: min(1000px, 130vw); height: min(1000px, 130vw); top: 50%; left: 50%; transform: translate(-50%, -50%); color: #c3cadb; opacity: .5; z-index: -1; }
+.home-platform-intro { font-size: 14px; line-height: 1.6; color: #59616e; margin: 16px auto 26px; max-width: 550px; }
+.home-platform-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; max-width: 1000px; margin: 0 auto; }
+.home-platform-card { background: #fffffff0; border: 1px solid #d9dfe9; border-radius: 12px; padding: 23px 12px; box-shadow: 0 5px 16px #17253808; }
+.home-platform-card > div { display: flex; justify-content: center; align-items: center; gap: 9px; margin-bottom: 12px; }
+.home-platform-card strong { font-size: clamp(16px, 1.7vw, 21px); font-weight: 750; }
+.home-platform-card > span { font-size: 11px; color: #626b75; }
+.home-platform-stars { color: #b17b18; letter-spacing: 1px; }
+.home-platform-sample { font-size: 11px; margin: 14px 0 0; color: #626b75; }
+.home-review-platforms .home-company-link { margin-top: 18px; }
+#traveller-reviews { scroll-margin-top: 140px; }
+@media (max-width: 767px) {
+  .home-company { grid-template-columns: 1fr; padding-block: 38px; gap: 28px; }
+  .home-company-photo { min-height: 300px; aspect-ratio: 1.2; }
+  .home-company-photo-caption { padding: 24px; }
+  .home-company-benefits { gap: 22px; }
+  .home-company-benefit h3 { font-size: 17px; }
+  .home-company-icon { flex-basis: 44px; height: 44px; }
+  .home-company-benefit { gap: 12px; }
+  .home-review-platforms { padding: 36px 0; }
+  .home-platform-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .home-platform-card { padding: 20px 8px; }
+  .home-platform-card > div { gap: 7px; }
+  .home-platform-card > div svg { width: 23px; height: 23px; }
+  .home-platform-card > span { display: flex; flex-direction: column; gap: 5px; }
+  .home-company-intro { font-size: 14px; }
+}
 @media (max-width: 1000px) {
   .home-container { width: calc(100% - 78px); }
   .home-hero { min-height: 435px; }
@@ -117,7 +165,7 @@
   .home-handwriting { font-size: 16px; margin-bottom: 18px; }
   .home-hero h1 { font-size: clamp(29px, 7.8vw, 40px); }
   .home-hero-description { font-size: 14px; margin-top: 14px; }
-  .home-hero-actions { gap: 10px; }
+  .home-hero-actions { gap: 10px; flex-wrap: wrap; }
   .home-button { padding: 14px 22px; font-size: 13px; gap: 10px; }
   .home-button-outline { min-width: 130px; }
   .home-scroll { bottom: 16px; right: 16px; font-size: 10px; }

@@ -62,7 +62,7 @@ export function Navbar() {
     <header className="site-navbar" ref={headerRef}>
       <div className="site-navbar-inner">
         <Link href="/" aria-label="ExploreYatri home" className="site-brand" onClick={() => setMenuRoute(null)}>
-          <Image src="/logo/explore-yatri-logo-display.png" alt="ExploreYatri logo" width={170} height={84} preload sizes="(max-width: 767px) 115px, (max-width: 999px) 105px, 160px" />
+          <Image src="/logo/explore-yatri-logo-display.png" alt="ExploreYatri logo" width={170} height={84} preload sizes="(max-width: 767px) 140px, (max-width: 999px) 150px, 180px" />
         </Link>
 
         <nav className="site-desktop-nav" aria-label="Main navigation">

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BedDouble, Building2, Headphones, Heart, MapPinned, Mountain, Mouse, Plane, ShieldCheck, Star, TreePalm, Leaf } from "lucide-react";
 import { packages } from "@/data/packages";
+import { ReviewPlatforms, WhyChooseCompany } from "./HomeExtras";
 
 const destinations = [
   { name: "Himachal", image: "/images/optimized/packages/manali-solang.jpg.webp", href: "/destinations/manali", icon: Mountain },
@@ -46,7 +47,9 @@ export function ReferenceHome() {
       </div>
     </section>
     <section className="home-confidence"><div className="home-confidence-shade" /><div className="home-container"><p className="home-eyebrow">Why ExploreYatri?</p><h2>Travel With Confidence</h2><div className="home-reason-grid">{reasons.map(reason => <div className="home-reason" key={reason.title}><span className="home-reason-icon"><reason.icon size={38} strokeWidth={1.4} /></span><h3>{reason.title}</h3><p>{reason.description}</p></div>)}</div></div></section>
+    <ReviewPlatforms />
     <section className="home-container home-reviews" id="traveller-reviews"><SectionTitle label="Real Stories" title="What Our Travellers Say" href="/contact" link="Share Your Experience" /><div className="home-review-grid">{reviews.map(review => <article className="home-review" key={review.name}><div className="home-review-avatar" aria-hidden="true">{review.initials}</div><div><div className="home-stars" aria-label="5 out of 5 stars">{Array.from({ length: 5 }, (_, i) => <Star key={i} size={15} fill="currentColor" strokeWidth={0} />)}</div><blockquote>“{review.text}”</blockquote><p className="home-review-name">– {review.name}</p><p className="home-review-trip">{review.trip}</p></div></article>)}</div><p className="home-sample-note">Sample traveller experiences</p></section>
     <section className="home-cta"><div className="home-container"><div><h2>Plan Your Next Journey</h2><p>Tell us where you want to go.<br />We’ll take care of the rest.</p></div><Link href="/contact" className="home-button">Plan My Trip <ArrowRight size={19} /></Link></div></section>
+    <WhyChooseCompany />
   </main>;
 }
