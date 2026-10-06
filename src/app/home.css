@@ -93,11 +93,12 @@
 .home-company-photo-caption { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 32px; color: white; background: linear-gradient(0deg, #07262ae6, transparent 65%); }
 .home-company-photo-caption span { font-size: 13px; color: #d4e5de; margin-bottom: 12px; }
 .home-company-photo-caption strong { font-size: clamp(25px, 2.5vw, 34px); line-height: 1.2; }
-.home-review-platforms { position: relative; isolation: isolate; overflow: hidden; padding: 48px 0 42px; background: #ebedf4; text-align: center; }
-.home-review-globe { position: absolute; width: min(1000px, 130vw); height: min(1000px, 130vw); top: 50%; left: 50%; transform: translate(-50%, -50%); color: #c3cadb; opacity: .5; z-index: -1; }
+.home-review-platforms { position: relative; isolation: isolate; overflow: hidden; padding: 48px 0 42px; background: linear-gradient(135deg, #fffaf5, #fff0e1); text-align: center; }
+.home-review-backdrop { object-fit: cover; object-position: center 45%; z-index: -2; }
+.home-review-backdrop-shade { position: absolute; inset: 0; background: linear-gradient(135deg, #fffaf5e8, #fff0e1cc); z-index: -1; }
 .home-platform-intro { font-size: 14px; line-height: 1.6; color: #59616e; margin: 16px auto 26px; max-width: 550px; }
 .home-platform-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; max-width: 1000px; margin: 0 auto; }
-.home-platform-card { background: #fffffff0; border: 1px solid #d9dfe9; border-radius: 12px; padding: 23px 12px; box-shadow: 0 5px 16px #17253808; }
+.home-platform-card { background: #fffffff0; border: 1px solid #eee2d8; border-radius: 12px; padding: 23px 12px; box-shadow: 0 5px 16px #a454230a; }
 .home-platform-card > div { display: flex; justify-content: center; align-items: center; gap: 9px; margin-bottom: 12px; }
 .home-platform-card strong { font-size: clamp(16px, 1.7vw, 21px); font-weight: 750; }
 .home-platform-card > span { font-size: 11px; color: #626b75; }

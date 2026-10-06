@@ -49,7 +49,8 @@ const platforms = [
 export function ReviewPlatforms() {
   return (
     <section className="home-review-platforms" aria-labelledby="platform-heading">
-      <Globe2 className="home-review-globe" aria-hidden="true" strokeWidth={.5} />
+      <Image className="home-review-backdrop" src="/images/optimized/review-travel-collage.webp" alt="" fill sizes="100vw" aria-hidden="true" />
+      <div className="home-review-backdrop-shade" aria-hidden="true" />
       <div className="home-container">
         <p className="home-eyebrow">Stories From The Journey</p>
         <h2 id="platform-heading">Don&apos;t Take Our Word For It.<br /><span>Customers</span> Say It Best.</h2>
