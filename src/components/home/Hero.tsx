@@ -62,7 +62,7 @@ export function Hero() {
           <div className="hero-photo-wrapper">
             <div className="hero-photo-card">
               <Image
-                src="/images/explore-yatri-hero.jpg"
+                src="/images/optimized/explore-yatri-hero.jpg.webp"
                 alt="Beautiful mountain destination by a peaceful lake"
                 fill
                 priority

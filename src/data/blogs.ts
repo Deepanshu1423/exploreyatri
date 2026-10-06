@@ -13,7 +13,7 @@ export const blogs: Blog[] = [
     content:
       "Kashmir offers a beautiful combination of mountains, lakes, valleys and unique travel experiences. Srinagar, Gulmarg and Pahalgam remain some of its most popular destinations.",
 
-    featuredImage: "/images/blogs/kashmir-travel-guide.png",
+    featuredImage: "/images/optimized/blogs/kashmir-travel-guide.png.webp",
     featuredImageAlt:
       "Beautiful Kashmir mountains featured in ExploreYatri travel guide",
 
@@ -56,7 +56,7 @@ export const blogs: Blog[] = [
       "A successful international trip starts with selecting the right destination, understanding visa requirements and planning your overall budget.",
 
     featuredImage:
-      "/images/blogs/international-trip-guide.png",
+      "/images/optimized/blogs/international-trip-guide.png.webp",
 
     featuredImageAlt:
       "Traveller planning an international holiday",
@@ -92,7 +92,7 @@ export const blogs: Blog[] = [
     content:
       "Choosing the right time to visit Bali can make a significant difference to your travel experience.",
 
-    featuredImage: "/images/blogs/bali-best-time.png",
+    featuredImage: "/images/optimized/blogs/bali-best-time.png.webp",
 
     featuredImageAlt:
       "Tropical Bali beach during beautiful weather",

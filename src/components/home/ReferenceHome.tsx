@@ -4,12 +4,12 @@ import { ArrowRight, BedDouble, Building2, Headphones, Heart, MapPinned, Mountai
 import { packages } from "@/data/packages";
 
 const destinations = [
-  { name: "Himachal", image: "/images/packages/manali-solang.jpg", href: "/destinations/manali", icon: Mountain },
-  { name: "Goa", image: "/images/home-goa-sunset.png", href: "/contact?destination=Goa", icon: TreePalm },
-  { name: "Uttarakhand", image: "/images/packages/chopta-tungnath.jpg", href: "/packages/chopta-tungnath-chandrashila", icon: Mountain },
-  { name: "Kashmir", image: "/images/packages/kashmir-explorer.jpg", href: "/destinations/kashmir", icon: Leaf },
-  { name: "International", image: "/images/home-santorini.png", href: "/packages/international", icon: Plane },
-  { name: "Honeymoon", image: "/images/home-mountain-sunrise.png", href: "/contact?trip=honeymoon", icon: Heart },
+  { name: "Himachal", image: "/images/optimized/packages/manali-solang.jpg.webp", href: "/destinations/manali", icon: Mountain },
+  { name: "Uttarakhand", image: "/images/optimized/packages/chopta-tungnath.jpg.webp", href: "/packages/chopta-tungnath-chandrashila", icon: Mountain },
+  { name: "Kashmir", image: "/images/optimized/packages/kashmir-explorer.jpg.webp", href: "/destinations/kashmir", icon: Leaf },
+  { name: "Goa", image: "/images/optimized/home-goa-sunset.png.webp", href: "/contact?destination=Goa", icon: TreePalm },
+  { name: "International", image: "/images/optimized/home-santorini.png.webp", href: "/packages/international", icon: Plane },
+  { name: "Honeymoon", image: "/images/optimized/home-mountain-sunrise.png.webp", href: "/contact?trip=honeymoon", icon: Heart },
 ];
 const reasons = [
   { icon: ShieldCheck, title: "Clear Travel Planning", description: "Transparent details & inclusions" },
@@ -30,7 +30,7 @@ export function ReferenceHome() {
   const featured = ["manali-solang-valley-escape", "jibhi-tirthan-valley"].map(slug => packages.find(item => item.slug === slug)!);
   return <main className="reference-home">
     <section className="home-hero" aria-labelledby="home-heading">
-      <Image className="home-hero-photo" src="/images/home-mountain-sunrise.png" alt="Backpacker looking over a Himalayan mountain valley at sunrise" fill priority sizes="100vw" />
+      <Image className="home-hero-photo" src="/images/optimized/home-mountain-sunrise.png.webp" alt="Backpacker looking over a Himalayan mountain valley at sunrise" fill preload sizes="100vw" />
       <div className="home-hero-shade" />
       <div className="home-container home-hero-content"><p className="home-handwriting">Your Next Adventure Awaits</p><h1 id="home-heading">Travel More.<br />Explore Better.<br /><span>Remember Forever.</span></h1><p className="home-hero-description">Handpicked domestic &amp; international<br className="home-desktop-break" /> journeys designed around you.</p><div className="home-hero-actions"><Link href="/packages" className="home-button">Explore Trips <ArrowRight size={20} /></Link><Link href="/contact" className="home-button home-button-outline">Plan My Trip</Link></div></div>
       <a href="#popular-destinations" className="home-scroll"><Mouse size={28} strokeWidth={1.4} /><span>Scroll Down</span></a>
@@ -42,7 +42,7 @@ export function ReferenceHome() {
     <section className="home-container home-packages">
       <SectionTitle label="Trending Trips" title="Most Loved Packages" href="/packages" link="View All Packages" />
       <div className="home-package-grid">{featured.map(item => <article key={item.slug} className="home-package-card"><Link href={`/packages/${item.slug}`} className="home-package-photo"><Image src={item.coverImage} alt={item.coverImageAlt} fill sizes="(max-width: 600px) 90vw, 33vw" /><span>{item.nights}N / {item.days}D</span></Link><div className="home-package-info"><h3><Link href={`/packages/${item.slug}`}>{item.slug.startsWith("manali") ? "Manali – Solang Valley" : "Jibhi – Tirthan Valley"}</Link></h3><p>{item.route}</p><div className="home-package-bottom"><div><small>Starting from</small><strong>₹{item.price.toLocaleString("en-IN")}</strong><span> / person</span></div><Link href={`/packages/${item.slug}`}>View Details <ArrowRight size={15} /></Link></div></div></article>)}
-        <article className="home-package-card"><Link href="/contact?destination=Goa" className="home-package-photo"><Image src="/images/home-goa-sunset.png" alt="Palm-lined beach at sunset" fill sizes="(max-width: 600px) 90vw, 33vw" /><span>Custom Trip</span></Link><div className="home-package-info"><h3><Link href="/contact?destination=Goa">Goa Getaway</Link></h3><p>Sun, sand &amp; your perfect escape</p><div className="home-package-bottom"><div><small>Tailored to you</small><strong className="home-quote-price">On request</strong></div><Link href="/contact?destination=Goa">Plan Trip <ArrowRight size={15} /></Link></div></div></article>
+        <article className="home-package-card"><Link href="/contact?destination=Goa" className="home-package-photo"><Image src="/images/optimized/home-goa-sunset.png.webp" alt="Palm-lined beach at sunset" fill sizes="(max-width: 600px) 90vw, 33vw" /><span>Custom Trip</span></Link><div className="home-package-info"><h3><Link href="/contact?destination=Goa">Goa Getaway</Link></h3><p>Sun, sand &amp; your perfect escape</p><div className="home-package-bottom"><div><small>Tailored to you</small><strong className="home-quote-price">On request</strong></div><Link href="/contact?destination=Goa">Plan Trip <ArrowRight size={15} /></Link></div></div></article>
       </div>
     </section>
     <section className="home-confidence"><div className="home-confidence-shade" /><div className="home-container"><p className="home-eyebrow">Why ExploreYatri?</p><h2>Travel With Confidence</h2><div className="home-reason-grid">{reasons.map(reason => <div className="home-reason" key={reason.title}><span className="home-reason-icon"><reason.icon size={38} strokeWidth={1.4} /></span><h3>{reason.title}</h3><p>{reason.description}</p></div>)}</div></div></section>

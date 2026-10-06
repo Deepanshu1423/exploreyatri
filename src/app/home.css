@@ -46,7 +46,7 @@
 .home-package-bottom span { color: #6e7373; font-size: 11px; }
 .home-package-bottom > a { display: inline-flex; align-items: center; gap: 9px; font-size: 11px; white-space: nowrap; padding-bottom: 3px; }
 .home-package-bottom .home-quote-price { font-size: 19px; }
-.home-confidence { position: relative; padding: 38px 0 40px; background: #092823 url('/images/packages/jibhi-tirthan.jpg') center 60% / cover; color: white; text-align: center; }
+.home-confidence { position: relative; padding: 38px 0 40px; background: #092823 url('/images/optimized/packages/jibhi-tirthan.jpg.webp') center 60% / cover; color: white; text-align: center; }
 .home-confidence-shade { position: absolute; inset: 0; background: #031b19ed; }
 .home-confidence .home-container { position: relative; }
 .home-confidence .home-eyebrow { margin-bottom: 12px; }
@@ -68,7 +68,7 @@
 .home-review-name { font-size: 11px; font-weight: 700; margin: 0 0 3px; }
 .home-review-trip { font-size: 11px; color: #777; margin: 0; }
 .home-sample-note { font-size: 10px; color: #7a807d; margin: 12px 0 0; }
-.home-cta { padding: 24px 0; color: white; background: linear-gradient(90deg, #061c24ee, #09242c33), url('/images/home-mountain-sunrise.png') center 58% / cover; }
+.home-cta { padding: 24px 0; color: white; background: linear-gradient(90deg, #061c24ee, #09242c33), url('/images/optimized/home-mountain-sunrise.png.webp') center 58% / cover; }
 .home-cta .home-container { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .home-cta h2 { font-size: 28px; font-weight: 600; margin: 0 0 8px; }
 .home-cta p { color: #d5e0e0; font-size: 14px; line-height: 1.5; margin: 0; }

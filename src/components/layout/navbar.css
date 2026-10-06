@@ -2,7 +2,7 @@
 html.dark .site-navbar { background: rgba(29, 23, 20, .96); }
 .site-navbar-inner { display: grid; grid-template-columns: minmax(140px, 1fr) auto minmax(140px, 1fr); align-items: center; gap: 18px; min-height: 100px; max-width: 1360px; width: calc(100% - 64px); margin: 0 auto; }
 .site-brand { display: inline-flex; align-items: center; justify-self: start; margin-left: 24px; }
-.site-brand img { width: 120px; height: auto; max-height: 100px; object-fit: contain; }
+.site-brand img { width: 160px; height: auto; max-height: 100px; object-fit: contain; }
 .site-desktop-nav { display: flex; justify-content: center; gap: clamp(16px, 1.8vw, 28px); align-items: center; grid-column: 2; transform: translateX(48px); }
 .site-nav-item { display: flex; align-items: center; gap: 4px; position: relative; }
 .site-nav-link { font-size: 14px; font-weight: 650; padding: 14px 0; white-space: nowrap; position: relative; }
@@ -19,13 +19,13 @@ html.dark .site-navbar { background: rgba(29, 23, 20, .96); }
 @media (min-width: 768px) and (max-width: 999px) {
   .site-navbar-inner { grid-template-columns: 1fr; gap: 0; width: calc(100% - 40px); }
   .site-brand { justify-self: center; }
-  .site-brand img { width: 90px; max-height: 76px; }
+  .site-brand img { width: 105px; max-height: 76px; }
   .site-desktop-nav { grid-column: 1; gap: 24px; padding-bottom: 4px; transform: translateX(20px); }
   .site-nav-link { font-size: 13px; padding: 10px 0; }
 }
 @media (max-width: 767px) {
   .site-navbar-inner { display: flex; justify-content: space-between; width: calc(100% - 36px); min-height: 84px; gap: 12px; }
-  .site-brand img { width: 100px; max-height: 84px; }
+  .site-brand img { width: 115px; max-height: 84px; }
   .site-brand { margin-left: 12px; }
   .site-desktop-nav { display: none; }
   .site-mobile-toggle { display: flex; align-items: center; justify-content: center; flex-shrink: 0; }

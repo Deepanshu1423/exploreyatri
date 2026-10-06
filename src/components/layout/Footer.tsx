@@ -71,7 +71,7 @@ export function Footer() {
               aria-label="ExploreYatri home"
             >
               <Image
-                src="/logo/explore-yatri-logo.png"
+                src="/logo/explore-yatri-logo-display.png"
                 alt="ExploreYatri logo"
                 width={170}
                 height={84}

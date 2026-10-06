@@ -40,11 +40,11 @@ export function IntroLoader() {
 
           <div className="premium-loader__logo-position">
             <Image
-              src="/logo/explore-yatri-logo.png"
+              src="/logo/explore-yatri-logo-display.png"
               alt="Explore Yatri"
               width={320}
               height={220}
-              priority
+              preload
               sizes="(max-width: 640px) 218px, 275px"
               className="premium-loader__logo"
             />

@@ -21,7 +21,7 @@ export function TravelCTA() {
       <Container>
         <div className="relative overflow-hidden rounded-[30px] border border-[var(--border)] shadow-[0_28px_80px_rgba(82,43,20,0.10)]">
           <Image
-            src="/images/herobackground_image.jpg"
+            src="/images/optimized/herobackground_image.jpg.webp"
             alt="ExploreYatri travel planning"
             fill
             sizes="(max-width: 1280px) 100vw, 1280px"

@@ -137,7 +137,7 @@ export default function AboutPage() {
         <PageSeo path="/about" type="AboutPage" />
         <section className="relative overflow-hidden border-b border-[var(--border)] bg-[var(--background)]">
           <Image
-            src="/images/herobackground_image.jpg"
+            src="/images/optimized/herobackground_image.jpg.webp"
             alt="ExploreYatri travel background"
             fill
             priority
@@ -192,7 +192,7 @@ export default function AboutPage() {
             <div className="relative mx-auto hidden w-full max-w-xl lg:block">
               <div className="relative ml-auto aspect-[4/5] w-[78%] overflow-hidden rounded-[34px] border border-white/30 shadow-[0_30px_80px_rgba(60,30,12,0.18)]">
                 <Image
-                  src="/images/packages/kashmir-paradise.jpg"
+                  src="/images/optimized/packages/kashmir-paradise.jpg.webp"
                   alt="Scenic Himalayan travel experience"
                   fill
                   sizes="520px"
@@ -203,7 +203,7 @@ export default function AboutPage() {
 
               <div className="absolute -bottom-6 left-0 aspect-[4/3] w-[52%] overflow-hidden rounded-[26px] border-[6px] border-[var(--background)] shadow-[0_24px_55px_rgba(60,30,12,0.16)]">
                 <Image
-                  src="/images/packages/bali-tropical.jpg"
+                  src="/images/optimized/packages/bali-tropical.jpg.webp"
                   alt="Bali tropical holiday"
                   fill
                   sizes="300px"
@@ -349,7 +349,7 @@ export default function AboutPage() {
           <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.88fr_1.12fr] lg:px-8">
             <div className="relative min-h-[430px] overflow-hidden rounded-[34px] border border-[var(--border)]">
               <Image
-                src="/images/packages/manali-retreat.jpg"
+                src="/images/optimized/packages/manali-retreat.jpg.webp"
                 alt="ExploreYatri mountain travel"
                 fill
                 sizes="(max-width: 1024px) 100vw, 45vw"

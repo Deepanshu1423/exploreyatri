@@ -17,7 +17,7 @@ export const destinations: Destination[] = [
     description:
       "Explore Srinagar, Pahalgam, Gulmarg, Sonamarg and the beautiful landscapes that make Kashmir one of India's most memorable travel destinations.",
 
-    image: "/images/packages/kashmir-explorer.jpg",
+    image: "/images/optimized/packages/kashmir-explorer.jpg.webp",
     imageAlt: "Beautiful Kashmir landscape and Dal Lake",
 
     featured: true,
@@ -43,7 +43,7 @@ export const destinations: Destination[] = [
     description:
       "Discover Manali, Solang Valley, Atal Tunnel, Rohtang and nearby Himalayan experiences.",
 
-    image: "/images/packages/manali-solang.jpg",
+    image: "/images/optimized/packages/manali-solang.jpg.webp",
     imageAlt: "Beautiful mountain landscape in Manali",
 
     featured: true,
@@ -69,7 +69,7 @@ export const destinations: Destination[] = [
     description:
       "Experience Jaisalmer Fort, desert safari, cultural evenings, Longewala and the vast Thar Desert.",
 
-    image: "/images/packages/jaisalmer-desert.jpg",
+    image: "/images/optimized/packages/jaisalmer-desert.jpg.webp",
     imageAlt: "Golden desert dunes in Jaisalmer Rajasthan",
 
     featured: true,
@@ -95,7 +95,7 @@ export const destinations: Destination[] = [
     description:
       "Explore Jibhi, Tirthan Valley, Jalori Pass, Serolsar Lake and refreshing Himalayan nature experiences.",
 
-    image: "/images/packages/jibhi-tirthan.jpg",
+    image: "/images/optimized/packages/jibhi-tirthan.jpg.webp",
     imageAlt: "Green mountain valley and river in Jibhi Tirthan",
 
     featured: true,
@@ -121,7 +121,7 @@ export const destinations: Destination[] = [
     description:
       "Travel through Guptkashi and Gaurikund before trekking towards the sacred Kedarnath Temple.",
 
-    image: "/images/packages/kedarnath-yatra.jpg",
+    image: "/images/optimized/packages/kedarnath-yatra.jpg.webp",
     imageAlt: "Kedarnath Temple surrounded by Himalayan mountains",
 
     featured: true,
@@ -147,7 +147,7 @@ export const destinations: Destination[] = [
     description:
       "Discover Udaipur's City Palace, lakes, historic attractions and nearby Mount Abu.",
 
-    image: "/images/packages/udaipur-mount-abu.jpg",
+    image: "/images/optimized/packages/udaipur-mount-abu.jpg.webp",
     imageAlt: "Beautiful heritage architecture and lake in Udaipur",
 
     featured: true,

@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Mountain, Phone } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { siteConfig } from "@/config/site";
-import founderPortrait from "../../../public/images/IMG_8496.JPG.jpeg";
+import founderPortrait from "../../../public/images/optimized/IMG_8496.JPG.jpeg.webp";
 import "./founder.css";
 
 export function FounderCard() {

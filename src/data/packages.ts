@@ -24,7 +24,7 @@ export const packages: TravelPackage[] = [
       "A Himalayan escape combining Chopta, Tungnath, Chandrashila and Deoria Tal.",
     description:
       "Travel from Delhi to Chopta via Devprayag, trek to Tungnath Temple and Chandrashila, explore Deoria Tal and enjoy a scenic camping experience in Uttarakhand.",
-    coverImage: "/images/packages/chopta-tungnath.jpg",
+    coverImage: "/images/optimized/packages/chopta-tungnath.jpg.webp",
     coverImageAlt:
       "Scenic Himalayan mountain landscape near Chopta and Tungnath",
     gallery: [],
@@ -116,7 +116,7 @@ export const packages: TravelPackage[] = [
       "Royal Udaipur, beautiful lakes and a refreshing Mount Abu day excursion.",
     description:
       "Experience Udaipur's palaces, lakes and heritage attractions along with a scenic Mount Abu excursion before returning to Delhi.",
-    coverImage: "/images/packages/udaipur-mount-abu.jpg",
+    coverImage: "/images/optimized/packages/udaipur-mount-abu.jpg.webp",
     coverImageAlt:
       "City Palace and Lake Pichola in Udaipur at golden hour",
     gallery: [],
@@ -209,7 +209,7 @@ export const packages: TravelPackage[] = [
       "Dharamshala sightseeing, a Triund trek and the relaxed atmosphere of McLeod Ganj.",
     description:
       "Travel to Dharamshala, explore local attractions, trek to Triund and discover McLeod Ganj before the overnight return to Delhi.",
-    coverImage: "/images/packages/mcleodganj-triund.jpg",
+    coverImage: "/images/optimized/packages/mcleodganj-triund.jpg.webp",
     coverImageAlt:
       "Trekkers overlooking the mountain landscape at Triund near McLeod Ganj",
     gallery: [],
@@ -288,20 +288,20 @@ export const packages: TravelPackage[] = [
     route: "Delhi / Gurugram to Delhi",
     days: 5,
     nights: 4,
-    price: 7499,
+    price: 9999,
     pricingOptions: [
       {
         label: "Delhi to Delhi",
-        quad: 7499,
-        triple: 7999,
-        dual: 8499,
+        quad: 9999,
+        triple: 10499,
+        dual: 10999,
       },
     ],
     shortDescription:
       "Desert camping, safari, Longewala, Tanot Temple and the Golden City of Jaisalmer.",
     description:
       "Discover the Thar Desert through a premium desert camp, camel or jeep safari, traditional Rajasthani experiences and iconic Jaisalmer sightseeing.",
-    coverImage: "/images/packages/jaisalmer-desert.jpg",
+    coverImage: "/images/optimized/packages/jaisalmer-desert.jpg.webp",
     coverImageAlt:
       "Camel ride across the Jaisalmer desert at sunset",
     gallery: [],
@@ -378,20 +378,20 @@ export const packages: TravelPackage[] = [
     route: "Delhi to Delhi",
     days: 5,
     nights: 4,
-    price: 3999,
+    price: 5999,
     pricingOptions: [
       {
         label: "Delhi to Delhi",
-        quad: 3999,
-        triple: 4599,
-        dual: 4999,
+        quad: 5999,
+        triple: 6599,
+        dual: 6999,
       },
     ],
     shortDescription:
       "A value-packed Manali trip with local sightseeing, Solang Valley, Atal Tunnel and Kasol.",
     description:
       "Explore Manali's local attractions, enjoy the adventure atmosphere of Solang Valley and Atal Tunnel, then continue towards Kasol before returning to Delhi.",
-    coverImage: "/images/packages/manali-solang.jpg",
+    coverImage: "/images/optimized/packages/manali-solang.jpg.webp",
     coverImageAlt:
       "Paragliding above the mountains in Solang Valley near Manali",
     gallery: [],
@@ -483,7 +483,7 @@ export const packages: TravelPackage[] = [
       "A relaxed mountain journey through Jibhi, Jalori Pass, Serolsar Lake and Tirthan Valley.",
     description:
       "Enjoy Jibhi Waterfall, Mini Thailand, forest walks, Jalori Pass, Serolsar Lake and the scenic Tirthan Valley with a social group-travel experience.",
-    coverImage: "/images/packages/jibhi-tirthan.jpg",
+    coverImage: "/images/optimized/packages/jibhi-tirthan.jpg.webp",
     coverImageAlt:
       "River flowing through the green Tirthan Valley in Himachal Pradesh",
     gallery: [],
@@ -574,7 +574,7 @@ export const packages: TravelPackage[] = [
       "Manali sightseeing, Rohtang, Atal Tunnel and the riverside charm of Kasol.",
     description:
       "Discover Manali, Rohtang Pass, Atal Tunnel, Solang Valley and Kasol with hotel stay, camp experience and sightseeing.",
-    coverImage: "/images/packages/manali-kasol.jpg",
+    coverImage: "/images/optimized/packages/manali-kasol.jpg.webp",
     coverImageAlt:
       "Parvati River flowing through the forest near Kasol",
     gallery: [],
@@ -660,26 +660,26 @@ export const packages: TravelPackage[] = [
     route: "Delhi to Delhi / Jammu to Jammu",
     days: 8,
     nights: 7,
-    price: 10999,
+    price: 14999,
     pricingOptions: [
       {
         label: "Delhi to Delhi",
-        quad: 11999,
-        triple: 12999,
-        dual: 13999,
+        quad: 15999,
+        triple: 16999,
+        dual: 17999,
       },
       {
         label: "Jammu to Jammu",
-        quad: 10999,
-        triple: 11999,
-        dual: 12999,
+        quad: 14999,
+        triple: 15999,
+        dual: 16999,
       },
     ],
     shortDescription:
       "Pahalgam, Gulmarg, Sonamarg, Srinagar and a Dal Lake houseboat experience.",
     description:
       "A complete Kashmir journey covering Pahalgam, Gulmarg, Sonamarg, Srinagar and Dal Lake, with hotel stays, sightseeing and a houseboat experience.",
-    coverImage: "/images/packages/kashmir-explorer.jpg",
+    coverImage: "/images/optimized/packages/kashmir-explorer.jpg.webp",
     coverImageAlt:
       "Shikara boats on Dal Lake in Srinagar, Kashmir",
     gallery: [],
@@ -809,7 +809,7 @@ export const packages: TravelPackage[] = [
       "A spiritual journey to Kedarnath with Guptkashi/Phata stay and the Himalayan temple trek.",
     description:
       "Travel through Uttarakhand to Guptkashi or Phata, trek from Gaurikund to Kedarnath, attend temple darshan and return with a complete yatra experience.",
-    coverImage: "/images/packages/kedarnath-yatra.jpg",
+    coverImage: "/images/optimized/packages/kedarnath-yatra.jpg.webp",
     coverImageAlt:
       "Kedarnath Temple surrounded by the Himalayan mountains",
     gallery: [],
@@ -918,7 +918,7 @@ export const packages: TravelPackage[] = [
       "A combined Kedarnath and Badrinath pilgrimage through the Garhwal Himalayas.",
     description:
       "Complete the Do Dham journey with Kedarnath trek, overnight stays in Guptkashi/Phata and Badrinath, sightseeing and guided yatra assistance.",
-    coverImage: "/images/packages/do-dham-yatra.jpg",
+    coverImage: "/images/optimized/packages/do-dham-yatra.jpg.webp",
     coverImageAlt:
       "Badrinath temple area with snow-capped Himalayan mountains",
     gallery: [],
@@ -1031,7 +1031,7 @@ export const packages: TravelPackage[] = [
       "The complete Uttarakhand Char Dham circuit covering Yamunotri, Gangotri, Kedarnath and Badrinath.",
     description:
       "A comprehensive Himalayan pilgrimage through Barkot, Yamunotri, Uttarkashi, Gangotri, Guptkashi/Phata, Kedarnath and Badrinath.",
-    coverImage: "/images/packages/char-dham-yatra.jpg",
+    coverImage: "/images/optimized/packages/char-dham-yatra.jpg.webp",
     coverImageAlt:
       "Majestic Himalayan mountains in Gangotri, Uttarakhand",
     gallery: [],

@@ -16,7 +16,7 @@ const categories = [
     description:
       "From Himalayan valleys and spiritual journeys to royal cities and desert landscapes.",
     href: "/packages/domestic",
-    image: "/images/packages/kashmir-explorer.jpg",
+    image: "/images/optimized/packages/kashmir-explorer.jpg.webp",
     imageAlt: "Beautiful Kashmir mountains in India",
     icon: MapPinned,
   },
@@ -26,7 +26,7 @@ const categories = [
     description:
       "Discover thoughtfully planned international holidays, city breaks and tropical escapes.",
     href: "/packages/international",
-    image: "/images/packages/bali-tropical.jpg",
+    image: "/images/optimized/packages/bali-tropical.jpg.webp",
     imageAlt: "Tropical Bali international holiday destination",
     icon: Globe2,
   },

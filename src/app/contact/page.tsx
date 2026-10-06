@@ -55,7 +55,7 @@ export default function ContactPage() {
         {/* HERO */}
         <section className="relative overflow-hidden border-b border-[var(--border)]">
           <Image
-            src="/images/herobackground_image.jpg"
+            src="/images/optimized/herobackground_image.jpg.webp"
             alt="Beautiful ExploreYatri travel destination"
             fill
             priority
