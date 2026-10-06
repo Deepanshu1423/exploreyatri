@@ -45,7 +45,7 @@ export function Hero() {
               href="/contact"
               className="inline-flex items-center justify-center rounded-full border border-[var(--border-strong)] bg-[var(--surface)]/78 px-7 py-3.5 text-sm font-bold text-[var(--text-primary)] shadow-sm backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--primary)] hover:text-[var(--primary)]"
             >
-              Plan Your Trip
+              Plan My Trip
             </Link>
           </div>
 

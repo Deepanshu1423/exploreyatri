@@ -1,3 +1,5 @@
+import { PageSeo } from "@/components/seo/PageSeo";
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,13 +19,9 @@ import {
 } from "lucide-react";
 
 import { Footer } from "@/components/layout/Footer";
-import { Navbar } from "@/components/layout/Navbar";
+import { FounderCard } from "@/components/about/FounderCard";
 
-export const metadata: Metadata = {
-  title: "About ExploreYatri | Built for Explorers",
-  description:
-    "Discover the story, services, values and vision behind ExploreYatri — a travel brand focused on affordable, customized and memorable travel experiences.",
-};
+export const metadata: Metadata = pageMetadata("/about");
 
 const journeySteps = [
   {
@@ -134,9 +132,9 @@ const travelTypes = [
 export default function AboutPage() {
   return (
     <>
-      <Navbar />
 
       <main>
+        <PageSeo path="/about" type="AboutPage" />
         <section className="relative overflow-hidden border-b border-[var(--border)] bg-[var(--background)]">
           <Image
             src="/images/herobackground_image.jpg"
@@ -182,7 +180,7 @@ export default function AboutPage() {
                   href="/contact"
                   className="inline-flex items-center justify-center rounded-full border border-[var(--border-strong)] bg-[var(--surface)]/80 px-7 py-3.5 text-sm font-bold text-[var(--text-primary)] backdrop-blur-md transition-all duration-300 hover:border-[var(--primary)] hover:text-[var(--primary)]"
                 >
-                  Plan Your Trip
+                  Plan My Trip
                 </Link>
               </div>
 
@@ -224,6 +222,8 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
+
+        <FounderCard />
 
         <section className="bg-[var(--background)] py-20 sm:py-24">
           <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">

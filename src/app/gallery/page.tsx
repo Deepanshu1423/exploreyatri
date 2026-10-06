@@ -1,17 +1,14 @@
+import { PageSeo } from "@/components/seo/PageSeo";
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import fs from "node:fs";
 import path from "node:path";
 
 import { GalleryGrid } from "@/components/gallery/GalleryGrid";
 import { Footer } from "@/components/layout/Footer";
-import { Navbar } from "@/components/layout/Navbar";
 import type { GalleryItem } from "@/types/gallery";
 
-export const metadata: Metadata = {
-  title: "Gallery | ExploreYatri",
-  description:
-    "Real travel memories and client experiences shared with ExploreYatri.",
-};
+export const metadata: Metadata = pageMetadata("/gallery");
 
 const IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".avif"];
 const VIDEO_EXTENSIONS = [".mp4", ".webm", ".mov"];
@@ -56,9 +53,9 @@ export default function GalleryPage() {
 
   return (
     <>
-      <Navbar />
 
       <main className="bg-[var(--background)]">
+        <PageSeo path="/gallery" type="ImageGallery" />
         <section className="theme-section-soft border-b border-[var(--border)] py-11 sm:py-14 lg:py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-4xl text-center">

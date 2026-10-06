@@ -1,27 +1,24 @@
+import { PageSeo } from "@/components/seo/PageSeo";
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Globe2, Plane } from "lucide-react";
 
 import { Footer } from "@/components/layout/Footer";
-import { Navbar } from "@/components/layout/Navbar";
 import { PackageCard } from "@/components/packages/PackageCard";
 import { Container } from "@/components/ui/Container";
 import { getPackagesByType } from "@/services/packageService";
 
-export const metadata: Metadata = {
-  title: "International Holiday Packages | ExploreYatri",
-  description:
-    "Discover international holiday packages and global travel experiences with ExploreYatri.",
-};
+export const metadata: Metadata = pageMetadata("/packages/international");
 
 export default function InternationalPackagesPage() {
   const packages = getPackagesByType("international");
 
   return (
     <>
-      <Navbar />
 
       <main className="bg-[var(--background)]">
+        <PageSeo path="/packages/international" type="CollectionPage" items={packages.map(item => ({ name: item.title, path: `/packages/${item.slug}` }))} />
         {/* HEADER */}
         <section className="theme-section-soft border-b border-[var(--border)] py-10 sm:py-12 lg:py-14">
           <Container>

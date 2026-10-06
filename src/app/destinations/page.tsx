@@ -1,26 +1,23 @@
+import { PageSeo } from "@/components/seo/PageSeo";
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { Compass } from "lucide-react";
 
 import { DestinationCard } from "@/components/destinations/DestinationCard";
 import { Footer } from "@/components/layout/Footer";
-import { Navbar } from "@/components/layout/Navbar";
 import { Container } from "@/components/ui/Container";
 import { getAllDestinations } from "@/services/destinationService";
 
-export const metadata: Metadata = {
-  title: "Destinations | ExploreYatri",
-  description:
-    "Discover beautiful destinations across India with ExploreYatri.",
-};
+export const metadata: Metadata = pageMetadata("/destinations");
 
 export default function DestinationsPage() {
   const destinations = getAllDestinations();
 
   return (
     <>
-      <Navbar />
 
       <main className="bg-[var(--background)]">
+        <PageSeo path="/destinations" type="CollectionPage" items={destinations.map(item => ({ name: item.name, path: `/destinations/${item.slug}` }))} />
         {/* INTRO */}
         <section className="theme-section-soft border-b border-[var(--border)] py-10 sm:py-12 lg:py-14">
           <Container>

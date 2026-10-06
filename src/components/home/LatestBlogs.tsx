@@ -39,7 +39,7 @@ export function LatestBlogs() {
 
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[var(--text-secondary)] sm:text-base">
             Destination inspiration, practical travel tips and useful guides to
-            help you plan your trip with more confidence.
+            help you Plan My Trip with more confidence.
           </p>
         </div>
 

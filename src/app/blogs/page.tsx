@@ -1,25 +1,22 @@
+import { PageSeo } from "@/components/seo/PageSeo";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { BlogCard } from "@/components/blogs/BlogCard";
 import { Footer } from "@/components/layout/Footer";
-import { Navbar } from "@/components/layout/Navbar";
 import { getAllBlogs } from "@/services/blogService";
 
-export const metadata = {
-  title: "Travel Blogs & Guides | ExploreYatri",
-  description:
-    "Explore destination guides, travel tips and inspiring stories from ExploreYatri.",
-};
+export const metadata = pageMetadata("/blogs");
 
 export default function BlogsPage() {
   const blogs = getAllBlogs();
 
   return (
     <>
-      <Navbar />
 
       <main>
+        <PageSeo path="/blogs" type="CollectionPage" items={blogs.map(item => ({ name: item.title, path: `/blogs/${item.slug}` }))} />
         {/* HERO */}
         <section className="relative overflow-hidden border-b border-[var(--border)] bg-[var(--background)]">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(237,108,12,0.12),transparent_28%),radial-gradient(circle_at_85%_20%,rgba(201,11,18,0.07),transparent_28%)]" />

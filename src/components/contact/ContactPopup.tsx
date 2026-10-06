@@ -39,19 +39,9 @@ export function ContactPopup() {
   const [form, setForm] = useState<PopupForm>(initialForm);
 
   useEffect(() => {
-    const alreadyShown = sessionStorage.getItem(
-      "exploreyatri-contact-popup-shown"
-    );
-
-    if (alreadyShown) return;
-
     const timer = window.setTimeout(() => {
       setOpen(true);
-      sessionStorage.setItem(
-        "exploreyatri-contact-popup-shown",
-        "true"
-      );
-    }, 1200);
+    }, 2500);
 
     return () => window.clearTimeout(timer);
   }, []);
@@ -166,7 +156,7 @@ export function ContactPopup() {
           <div className="inline-flex items-center gap-2 rounded-full border border-[#f47721]/10 bg-white/75 px-3.5 py-2 shadow-sm backdrop-blur-md">
             <Sparkles className="h-3.5 w-3.5 text-[#f47721]" />
             <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-[#dc651d] sm:text-[10px]">
-              Plan Your Trip
+              Plan My Trip
             </span>
           </div>
 

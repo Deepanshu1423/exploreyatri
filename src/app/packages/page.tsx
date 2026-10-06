@@ -1,25 +1,22 @@
+import { PageSeo } from "@/components/seo/PageSeo";
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 
-import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { PackageCard } from "@/components/packages/PackageCard";
 import { Container } from "@/components/ui/Container";
 import { getAllPackages } from "@/services/packageService";
 
-export const metadata: Metadata = {
-  title: "Holiday Packages | ExploreYatri",
-  description:
-    "Explore handpicked domestic and international holiday packages with ExploreYatri.",
-};
+export const metadata: Metadata = pageMetadata("/packages");
 
 export default function PackagesPage() {
   const packages = getAllPackages();
 
   return (
     <>
-      <Navbar />
 
       <main className="bg-[var(--background)]">
+        <PageSeo path="/packages" type="CollectionPage" items={packages.map(item => ({ name: item.title, path: `/packages/${item.slug}` }))} />
         {/* =========================
             PAGE INTRO
         ========================= */}

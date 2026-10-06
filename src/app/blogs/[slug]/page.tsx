@@ -10,7 +10,9 @@ import {
 } from "lucide-react";
 
 import { Footer } from "@/components/layout/Footer";
-import { Navbar } from "@/components/layout/Navbar";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { siteConfig } from "@/config/site";
+import { absoluteUrl, breadcrumbData, createMetadata, organizationId } from "@/lib/seo";
 import {
   getAllBlogs,
   getBlogBySlug,
@@ -36,24 +38,18 @@ export async function generateMetadata({
   const blog = getBlogBySlug(slug);
 
   if (!blog) {
-    return {
-      title: "Blog Not Found | ExploreYatri",
-    };
+    notFound();
   }
 
-  return {
-    title:
-      blog.seo?.title ??
-      `${blog.title} | ExploreYatri`,
-
-    description:
-      blog.seo?.description ??
-      blog.excerpt,
-
-    keywords:
-      blog.seo?.keywords ??
-      blog.tags,
-  };
+  return createMetadata({
+    title: blog.seo?.title ?? blog.title,
+    description: blog.seo?.description ?? blog.excerpt,
+    keywords: blog.seo?.keywords ?? blog.tags,
+    path: `/blogs/${blog.slug}`,
+    image: blog.featuredImage,
+    imageAlt: blog.featuredImageAlt,
+    article: { publishedTime: new Date(blog.publishedAt ?? blog.createdAt).toISOString(), modifiedTime: new Date(blog.updatedAt).toISOString(), author: blog.author, tags: blog.tags },
+  });
 }
 
 export default async function BlogDetailPage({
@@ -77,9 +73,24 @@ export default async function BlogDetailPage({
 
   return (
     <>
-      <Navbar />
 
       <main>
+        <JsonLd data={breadcrumbData([{ name: "Home", path: "/" }, { name: "Travel Blogs", path: "/blogs" }, { name: blog.title, path: `/blogs/${blog.slug}` }])} />
+        <JsonLd data={{
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          headline: blog.title,
+          description: blog.excerpt,
+          image: absoluteUrl(blog.featuredImage),
+          datePublished: new Date(blog.publishedAt ?? blog.createdAt).toISOString(),
+          dateModified: new Date(blog.updatedAt).toISOString(),
+          author: blog.author === siteConfig.name ? { "@id": organizationId } : { "@type": "Person", name: blog.author },
+          publisher: { "@id": organizationId },
+          mainEntityOfPage: { "@type": "WebPage", "@id": absoluteUrl(`/blogs/${blog.slug}`) },
+          inLanguage: siteConfig.language,
+          articleSection: blog.category,
+          keywords: blog.tags.join(", "),
+        }} />
         {/* ARTICLE HEADER */}
         <section className="relative overflow-hidden border-b border-[var(--border)] bg-[var(--background)]">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_10%,rgba(237,108,12,0.12),transparent_30%),radial-gradient(circle_at_90%_20%,rgba(201,11,18,0.08),transparent_30%)]" />

@@ -12,7 +12,8 @@ import {
 } from "lucide-react";
 
 import { Footer } from "@/components/layout/Footer";
-import { Navbar } from "@/components/layout/Navbar";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { absoluteUrl, breadcrumbData, createMetadata } from "@/lib/seo";
 import { PackageCard } from "@/components/packages/PackageCard";
 
 import {
@@ -42,15 +43,16 @@ export async function generateMetadata({
   const destination = getDestinationBySlug(slug);
 
   if (!destination) {
-    return {
-      title: "Destination Not Found | ExploreYatri",
-    };
+    notFound();
   }
 
-  return {
-    title: `${destination.name} Travel Packages | ExploreYatri`,
+  return createMetadata({
+    title: `${destination.name} Travel Guide & Holiday Packages`,
     description: destination.shortDescription,
-  };
+    path: `/destinations/${destination.slug}`,
+    image: destination.image,
+    imageAlt: destination.imageAlt,
+  });
 }
 
 export default async function DestinationDetailPage({
@@ -100,9 +102,10 @@ export default async function DestinationDetailPage({
 
   return (
     <>
-      <Navbar />
 
       <main className="bg-[var(--background)]">
+        <JsonLd data={breadcrumbData([{ name: "Home", path: "/" }, { name: "Destinations", path: "/destinations" }, { name: destination.name, path: `/destinations/${destination.slug}` }])} />
+        <JsonLd data={{ "@context": "https://schema.org", "@type": "TouristDestination", name: destination.name, description: destination.shortDescription, image: absoluteUrl(destination.image), url: absoluteUrl(`/destinations/${destination.slug}`), containedInPlace: { "@type": "AdministrativeArea", name: destination.state, containedInPlace: { "@type": "Country", name: destination.country } } }} />
         {/* =========================
             HERO
         ========================= */}

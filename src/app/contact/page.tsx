@@ -1,3 +1,5 @@
+import { PageSeo } from "@/components/seo/PageSeo";
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,14 +15,9 @@ import {
 
 import { ContactForm } from "@/components/contact/ContactForm";
 import { Footer } from "@/components/layout/Footer";
-import { Navbar } from "@/components/layout/Navbar";
 import { siteConfig } from "@/config/site";
 
-export const metadata: Metadata = {
-  title: "Contact Us | ExploreYatri",
-  description:
-    "Plan your next holiday with ExploreYatri. Send your travel requirements by email or continue the conversation directly on WhatsApp.",
-};
+export const metadata: Metadata = pageMetadata("/contact");
 
 const contactCards = [
   {
@@ -52,9 +49,9 @@ const contactCards = [
 export default function ContactPage() {
   return (
     <>
-      <Navbar />
 
       <main className="bg-[var(--background)]">
+        <PageSeo path="/contact" type="ContactPage" />
         {/* HERO */}
         <section className="relative overflow-hidden border-b border-[var(--border)]">
           <Image

@@ -16,7 +16,8 @@ import {
 } from "lucide-react";
 
 import { Footer } from "@/components/layout/Footer";
-import { Navbar } from "@/components/layout/Navbar";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { absoluteUrl, breadcrumbData, createMetadata, organizationId } from "@/lib/seo";
 import {
   getAllPackages,
   getPackageBySlug,
@@ -42,15 +43,16 @@ export async function generateMetadata({
   const packageItem = getPackageBySlug(slug);
 
   if (!packageItem) {
-    return {
-      title: "Package Not Found | ExploreYatri",
-    };
+    notFound();
   }
 
-  return {
-    title: `${packageItem.title} | ExploreYatri`,
+  return createMetadata({
+    title: packageItem.title,
     description: packageItem.shortDescription,
-  };
+    path: `/packages/${packageItem.slug}`,
+    image: packageItem.coverImage,
+    imageAlt: packageItem.coverImageAlt,
+  });
 }
 
 export default async function PackageDetailPage({
@@ -76,9 +78,20 @@ export default async function PackageDetailPage({
 
   return (
     <>
-      <Navbar />
 
       <main className="bg-[var(--background)]">
+        <JsonLd data={breadcrumbData([{ name: "Home", path: "/" }, { name: "Holiday Packages", path: "/packages" }, { name: packageItem.title, path: `/packages/${packageItem.slug}` }])} />
+        <JsonLd data={{
+          "@context": "https://schema.org",
+          "@type": "TouristTrip",
+          "@id": absoluteUrl(`/packages/${packageItem.slug}#trip`),
+          name: packageItem.title,
+          description: packageItem.shortDescription,
+          url: absoluteUrl(`/packages/${packageItem.slug}`),
+          image: absoluteUrl(packageItem.coverImage),
+          provider: { "@id": organizationId },
+          offers: { "@type": "Offer", price: packageItem.price, priceCurrency: "INR", description: "Starting price per person; see package inclusions and pricing options.", url: absoluteUrl(`/packages/${packageItem.slug}`) },
+        }} />
         {/* =========================
             PACKAGE HEADER
         ========================= */}
