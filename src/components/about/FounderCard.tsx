@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Mountain, Phone } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { siteConfig } from "@/config/site";
+import founderPortrait from "../../../public/images/IMG_8496.JPG.jpeg";
 import "./founder.css";
 
 export function FounderCard() {
@@ -16,8 +17,9 @@ export function FounderCard() {
       </div>
       <article className="founder-card">
         <div className="founder-photo">
-          <Image src="/images/vansh-jain-founder.png" alt="Vansh Jain sitting on a rocky overlook in the Himalayas" fill sizes="(max-width: 767px) 95vw, 760px" className="founder-image" />
-          <div className="founder-photo-shade" />
+          <Image src={founderPortrait} alt="Vansh Jain, Founder and CEO of ExploreYatri, seated on a boat" sizes="(max-width: 767px) calc(100vw - 32px), 420px" className="founder-image" />
+        </div>
+        <div className="founder-content">
           <div className="founder-badges">
             <span className="founder-owner-badge">Owner &amp; Founder</span>
             <span className="founder-travel-badge"><Mountain size={18} />Travel Entrepreneur</span>
@@ -26,8 +28,6 @@ export function FounderCard() {
             <h3>Vansh Jain</h3>
             <p>Founder &amp; CEO</p>
           </div>
-        </div>
-        <div className="founder-content">
           <p className="founder-description">
             Founder of Exploreyatri, focused on building seamless, reliable, and
             value-driven travel experiences across India and international
