@@ -1,8 +1,10 @@
 import assert from "node:assert/strict";
 import { readFile, readdir } from "node:fs/promises";
 import path from "node:path";
+import nextEnv from "@next/env";
 
-const origin = new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://exploreyatri.com").origin;
+nextEnv.loadEnvConfig(process.cwd(), false);
+const origin = new URL(process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://www.exploreyatri.com").origin;
 const appDirectory = path.resolve(".next/server/app");
 
 async function htmlFiles(directory) {

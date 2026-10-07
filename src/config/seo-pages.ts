@@ -1,4 +1,12 @@
 export const seoPages = {
+  "/privacy": {
+    title: "Privacy Policy",
+    description: "Read ExploreYatri's privacy information about customer details, booking communications, photography and marketing. Contact our team with privacy questions.",
+  },
+  "/terms": {
+    title: "Terms & Conditions",
+    description: "Read ExploreYatri's terms and conditions for travel bookings, payments, cancellations, refunds and customer responsibilities. Updated 7 October 2026.",
+  },
   "/": {
     title: "Domestic & International Holiday Packages",
     description: "Plan memorable domestic and international holidays with ExploreYatri. Explore Himalayan escapes, handpicked packages and trips customized around you.",

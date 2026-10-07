@@ -1,18 +1,18 @@
 # ExploreYatri SEO
 
-The canonical production domain is **https://exploreyatri.com**. Shared business information lives in `src/config/site.ts`; static page titles and descriptions live in `src/config/seo-pages.ts`.
+The default canonical production domain is **https://www.exploreyatri.com**. Shared business information lives in `src/config/site.ts`; static page titles and descriptions live in `src/config/seo-pages.ts`.
 
 ## Deployment configuration
 
 Copy `.env.example` to `.env.local` for local configuration, or configure the values with your hosting provider before building:
 
 ```env
-NEXT_PUBLIC_SITE_URL=https://exploreyatri.com
+NEXT_PUBLIC_SITE_URL=https://www.exploreyatri.com
 GOOGLE_SITE_VERIFICATION=
 SITE_NOINDEX=false
 ```
 
-`NEXT_PUBLIC_SITE_URL` should contain the preferred public origin, including HTTPS. Rebuild when changing it. If using `www`, use the same origin here and redirect the other host to it in your hosting settings. The default is the confirmed non-www domain above.
+`NEXT_PUBLIC_SITE_URL` should contain the preferred public origin, including HTTPS. Rebuild when changing it. Use the same origin in your hosting settings and redirect the other host to it. The default is the www domain above; a configured environment value takes precedence.
 
 For Google Search Console verification, put only the HTML-tag verification token in `GOOGLE_SITE_VERIFICATION`, then rebuild. No credentials need to be added to source control.
 
