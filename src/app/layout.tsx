@@ -20,24 +20,64 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   ...pageMetadata("/"),
+
   metadataBase: new URL(siteConfig.url),
+
   title: {
-    default: siteConfig.defaultTitle,
+    default:
+      siteConfig.defaultTitle ||
+      "ExploreYatri | Domestic & International Travel Packages",
     template: `%s | ${siteConfig.name}`,
   },
-  description: siteConfig.description,
+
+  description:
+    siteConfig.description ||
+    "Explore handpicked domestic and international travel packages with ExploreYatri.",
+
   keywords: siteConfig.keywords,
+
   applicationName: siteConfig.name,
+
   category: "travel",
-  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+
+  authors: [
+    {
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+  ],
+
   creator: siteConfig.name,
   publisher: siteConfig.name,
+
   verification: siteConfig.verification,
-  icons: { icon: [{ url: siteConfig.logo, type: "image/png" }], apple: [{ url: siteConfig.logo, type: "image/png" }] },
+
+  icons: {
+    icon: [
+      {
+        url: siteConfig.logo,
+        type: "image/png",
+      },
+    ],
+    apple: [
+      {
+        url: siteConfig.logo,
+        type: "image/png",
+      },
+    ],
+  },
+
   robots: {
     index: siteConfig.isIndexable,
     follow: siteConfig.isIndexable,
-    googleBot: { index: siteConfig.isIndexable, follow: siteConfig.isIndexable, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+
+    googleBot: {
+      index: siteConfig.isIndexable,
+      follow: siteConfig.isIndexable,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 };
 
@@ -47,14 +87,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang={siteConfig.language} data-scroll-behavior="smooth" suppressHydrationWarning>
+    <html
+      lang={siteConfig.language}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <body
         className={`${inter.variable} bg-[var(--background)] text-[var(--text-primary)] antialiased`}
       >
         <ThemeProvider>
           <JsonLd data={siteStructuredData} />
+
           <IntroLoader />
+
           <Navbar />
+
           {children}
 
           <ContactPopup />
