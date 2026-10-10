@@ -99,61 +99,41 @@ export function pageMetadata(path: SeoPagePath) {
   });
 }
 
-/* -------------------------------------------------------------------------- */
-/*                               STRUCTURED DATA                              */
-/* -------------------------------------------------------------------------- */
-
 export const organizationId = `${siteConfig.url}/#organization`;
-
 export const websiteId = `${siteConfig.url}/#website`;
-
 export const brandId = `${siteConfig.url}/#brand`;
 
 export const siteStructuredData = {
   "@context": "https://schema.org",
-
   "@graph": [
     {
       "@type": "Organization",
-
       "@id": organizationId,
-
       name: "ExploreYatri",
-
-      alternateName: "Explore Yatri",
-
+      alternateName: ["Explore Yatri", "exploreyatri.com"],
       url: siteConfig.url,
-
       description: siteConfig.description,
-
       slogan: siteConfig.tagline,
-
       logo: {
         "@type": "ImageObject",
         url: absoluteUrl(siteConfig.logo),
         contentUrl: absoluteUrl(siteConfig.logo),
       },
-
       brand: {
         "@type": "Brand",
         "@id": brandId,
         name: "ExploreYatri",
-        alternateName: "Explore Yatri",
+        alternateName: ["Explore Yatri", "exploreyatri.com"],
         logo: absoluteUrl(siteConfig.logo),
       },
-
       email: siteConfig.email,
-
       telephone: siteConfig.phone,
-
       sameAs: [siteConfig.instagram, siteConfig.facebook],
-
       founder: {
         "@type": "Person",
         name: siteConfig.founder,
         jobTitle: "Founder & CEO",
       },
-
       contactPoint: {
         "@type": "ContactPoint",
         telephone: siteConfig.phone,
@@ -162,55 +142,35 @@ export const siteStructuredData = {
         availableLanguage: ["English", "Hindi"],
       },
     },
-
     {
       "@type": "WebSite",
-
       "@id": websiteId,
-
       name: "ExploreYatri",
-
-      alternateName: "Explore Yatri",
-
+      alternateName: ["Explore Yatri", "exploreyatri.com"],
       url: siteConfig.url,
-
       description: siteConfig.description,
-
       inLanguage: siteConfig.language,
-
       publisher: {
         "@id": organizationId,
       },
-
       about: {
         "@id": brandId,
       },
     },
-
     {
       "@type": "Brand",
-
       "@id": brandId,
-
       name: "ExploreYatri",
-
-      alternateName: "Explore Yatri",
-
+      alternateName: ["Explore Yatri", "exploreyatri.com"],
       url: siteConfig.url,
-
       logo: {
         "@type": "ImageObject",
         url: absoluteUrl(siteConfig.logo),
       },
-
       slogan: siteConfig.tagline,
     },
   ],
 };
-
-/* -------------------------------------------------------------------------- */
-/*                              BREADCRUMB SCHEMA                             */
-/* -------------------------------------------------------------------------- */
 
 export function breadcrumbData(
   items: {
@@ -220,9 +180,7 @@ export function breadcrumbData(
 ) {
   return {
     "@context": "https://schema.org",
-
     "@type": "BreadcrumbList",
-
     itemListElement: items.map((item, index) => ({
       "@type": "ListItem",
       position: index + 1,
