@@ -13,7 +13,6 @@ type SeoOptions = {
   image?: string;
   imageAlt?: string;
   keywords?: string[];
-
   article?: {
     publishedTime: string;
     modifiedTime: string;
@@ -32,11 +31,9 @@ export function createMetadata(options: SeoOptions): Metadata {
 
   const image = {
     url: absoluteUrl(options.image || siteConfig.socialImage),
-
     alt:
       options.imageAlt ||
       `${siteConfig.name} holiday packages and personalized travel`,
-
     ...(!options.image
       ? {
           width: 1200,
@@ -67,27 +64,18 @@ export function createMetadata(options: SeoOptions): Metadata {
 
     openGraph: {
       title: socialTitle,
-
       description: options.description,
-
       url: absoluteUrl(options.path),
-
       siteName: siteConfig.name,
-
       locale: siteConfig.locale,
-
       images: [image],
 
       ...(options.article
         ? {
             type: "article" as const,
-
             publishedTime: options.article.publishedTime,
-
             modifiedTime: options.article.modifiedTime,
-
             authors: [options.article.author],
-
             tags: options.article.tags,
           }
         : {
@@ -97,11 +85,8 @@ export function createMetadata(options: SeoOptions): Metadata {
 
     twitter: {
       card: "summary_large_image",
-
       title: socialTitle,
-
       description: options.description,
-
       images: [image],
     },
   };
@@ -135,6 +120,8 @@ export const siteStructuredData = {
 
       name: "ExploreYatri",
 
+      alternateName: "Explore Yatri",
+
       url: siteConfig.url,
 
       description: siteConfig.description,
@@ -143,19 +130,15 @@ export const siteStructuredData = {
 
       logo: {
         "@type": "ImageObject",
-
         url: absoluteUrl(siteConfig.logo),
-
         contentUrl: absoluteUrl(siteConfig.logo),
       },
 
       brand: {
         "@type": "Brand",
-
         "@id": brandId,
-
         name: "ExploreYatri",
-
+        alternateName: "Explore Yatri",
         logo: absoluteUrl(siteConfig.logo),
       },
 
@@ -167,21 +150,15 @@ export const siteStructuredData = {
 
       founder: {
         "@type": "Person",
-
         name: siteConfig.founder,
-
         jobTitle: "Founder & CEO",
       },
 
       contactPoint: {
         "@type": "ContactPoint",
-
         telephone: siteConfig.phone,
-
         contactType: "customer service",
-
         areaServed: "IN",
-
         availableLanguage: ["English", "Hindi"],
       },
     },
@@ -192,6 +169,8 @@ export const siteStructuredData = {
       "@id": websiteId,
 
       name: "ExploreYatri",
+
+      alternateName: "Explore Yatri",
 
       url: siteConfig.url,
 
@@ -215,11 +194,12 @@ export const siteStructuredData = {
 
       name: "ExploreYatri",
 
+      alternateName: "Explore Yatri",
+
       url: siteConfig.url,
 
       logo: {
         "@type": "ImageObject",
-
         url: absoluteUrl(siteConfig.logo),
       },
 
@@ -236,7 +216,7 @@ export function breadcrumbData(
   items: {
     name: string;
     path: string;
-  }[],
+  }[]
 ) {
   return {
     "@context": "https://schema.org",
@@ -245,11 +225,8 @@ export function breadcrumbData(
 
     itemListElement: items.map((item, index) => ({
       "@type": "ListItem",
-
       position: index + 1,
-
       name: item.name,
-
       item: absoluteUrl(item.path),
     })),
   };
