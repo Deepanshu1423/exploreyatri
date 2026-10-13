@@ -223,6 +223,24 @@ export default function AboutPage() {
           </div>
         </section>
 
+        <section className="bg-[var(--background)] py-12 sm:py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="rounded-[28px] border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-10">
+              <h2 className="text-3xl font-semibold text-[var(--text-primary)] sm:text-4xl">
+                Our Mission
+              </h2>
+              <p className="mt-5 max-w-4xl text-base leading-8 text-[var(--text-secondary)] sm:text-lg">
+                At Exploreyatri, our mission is to build trust with every client
+                by providing reliable travel services at the best possible
+                prices. We believe in honest commitments, quality service,
+                transparent pricing, and hassle-free experiences. Our goal is
+                not just to sell trips but to create lasting relationships and
+                unforgettable memories through every journey.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <FounderCard />
 
         <section className="bg-[var(--background)] py-20 sm:py-24">

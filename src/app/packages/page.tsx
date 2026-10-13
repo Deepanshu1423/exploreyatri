@@ -3,7 +3,7 @@ import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 
 import { Footer } from "@/components/layout/Footer";
-import { PackageCard } from "@/components/packages/PackageCard";
+import { PackageListing } from "@/components/packages/PackageListing";
 import { Container } from "@/components/ui/Container";
 import { getAllPackages } from "@/services/packageService";
 
@@ -11,6 +11,11 @@ export const metadata: Metadata = pageMetadata("/packages");
 
 export default function PackagesPage() {
   const packages = getAllPackages();
+  const publicPackages = packages.map(item => {
+    const publicItem = { ...item };
+    delete publicItem.sourceNote;
+    return publicItem;
+  });
 
   return (
     <>
@@ -65,15 +70,8 @@ export default function PackagesPage() {
               </p>
             </div>
 
-            {packages.length > 0 ? (
-              <div className="grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
-                {packages.map((packageItem) => (
-                  <PackageCard
-                    key={packageItem.id}
-                    packageItem={packageItem}
-                  />
-                ))}
-              </div>
+{packages.length > 0 ? (
+              <PackageListing packages={publicPackages} />
             ) : (
               <div className="rounded-[26px] border border-[var(--border)] bg-[var(--surface)] px-5 py-10 text-center sm:p-12">
                 <p className="text-xs font-bold uppercase tracking-[0.22em] text-[var(--primary)]">

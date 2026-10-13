@@ -267,7 +267,7 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[var(--primary)]" />
 
-                <span>India</span>
+                <span>Naveen Shahdara, Delhi 110032</span>
               </li>
             </ul>
           </div>
