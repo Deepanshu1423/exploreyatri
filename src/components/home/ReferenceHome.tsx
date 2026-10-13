@@ -23,6 +23,9 @@ const reviews = [
   { name: "Rahul S.", trip: "Kashmir Trip", initials: "RS", text: "The itinerary was well planned and the overall travel experience was smooth and enjoyable." },
   { name: "Priya G.", trip: "Manali Trip", initials: "PG", text: "A comfortable trip with good planning and helpful support throughout the journey." },
   { name: "Aman K.", trip: "Jaisalmer Trip", initials: "AK", text: "The desert experience and sightseeing plan were nicely organized and easy to follow." },
+  { name: "Neha M.", trip: "Spiti Valley Trip", initials: "NM", text: "The mountain views and village stops made this a memorable journey. The itinerary left time to enjoy each place." },
+  { name: "Rohit V.", trip: "Goa Trip", initials: "RV", text: "We enjoyed the mix of beach time and sightseeing. The travel plan was easy to follow and suited our group." },
+  { name: "Ananya P.", trip: "Bhutan Trip", initials: "AP", text: "The monastery visits and scenic drives were highlights of our trip. Helpful planning made the journey comfortable." },
 ];
 function SectionTitle({ label, title, href, link }: { label: string; title: string; href: string; link: string }) {
   return <div className="home-section-heading"><div><p className="home-eyebrow">{label}</p><h2>{title}</h2></div><Link href={href}>{link}<ArrowRight size={17} /></Link></div>;

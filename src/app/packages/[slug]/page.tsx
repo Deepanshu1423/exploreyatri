@@ -15,6 +15,7 @@ import {
   X,
 } from "lucide-react";
 
+import { getPackageEnquiryUrl, getPackagePriceNote } from "@/components/packages/packagePresentation";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { absoluteUrl, breadcrumbData, createMetadata, organizationId } from "@/lib/seo";
@@ -47,8 +48,8 @@ export async function generateMetadata({
   }
 
   return createMetadata({
-    title: packageItem.title,
-    description: packageItem.shortDescription,
+    title: packageItem.seoTitle ?? packageItem.title,
+    description: packageItem.seoDescription ?? packageItem.shortDescription,
     path: `/packages/${packageItem.slug}`,
     image: packageItem.coverImage,
     imageAlt: packageItem.coverImageAlt,
@@ -66,11 +67,15 @@ export default async function PackageDetailPage({
     notFound();
   }
 
+  const enquiryUrl = getPackageEnquiryUrl(packageItem);
+  const onRequest = packageItem.priceStatus === "on-request";
+  const hasPackageEnquiry = onRequest || !!packageItem.collections;
+
   const formattedPrice = new Intl.NumberFormat("en-IN").format(
     packageItem.price
   );
 
-  const formattedOriginalPrice = packageItem.originalPrice
+  const formattedOriginalPrice = !onRequest && packageItem.originalPrice
     ? new Intl.NumberFormat("en-IN").format(
         packageItem.originalPrice
       )
@@ -90,7 +95,7 @@ export default async function PackageDetailPage({
           url: absoluteUrl(`/packages/${packageItem.slug}`),
           image: absoluteUrl(packageItem.coverImage),
           provider: { "@id": organizationId },
-          offers: { "@type": "Offer", price: packageItem.price, priceCurrency: "INR", description: "Starting price per person; see package inclusions and pricing options.", url: absoluteUrl(`/packages/${packageItem.slug}`) },
+          offers: packageItem.priceStatus ? undefined : { "@type": "Offer", price: packageItem.price, priceCurrency: "INR", description: "Starting price per person; see package inclusions and pricing options.", url: absoluteUrl(`/packages/${packageItem.slug}`) },
         }} />
         {/* =========================
             PACKAGE HEADER
@@ -105,9 +110,12 @@ export default async function PackageDetailPage({
               Back to Packages
             </Link>
 
-            <div className="mt-7 grid gap-8 lg:grid-cols-[1fr_360px] lg:items-end">
-              <div>
+            <div className="mt-7 grid gap-8 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
+              <div className="min-w-0">
                 <div className="flex flex-wrap gap-2">
+                  {packageItem.badge && (
+                    <span className="rounded-full bg-[var(--primary-soft)] px-3.5 py-1.5 text-xs font-bold text-[var(--primary)]">{packageItem.badge}</span>
+                  )}
                   <span className="rounded-full bg-[var(--primary-soft)] px-3.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.17em] text-[var(--primary)]">
                     {packageItem.type}
                   </span>
@@ -115,8 +123,7 @@ export default async function PackageDetailPage({
                   <span className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-3.5 py-1.5 text-xs font-semibold text-[var(--text-secondary)]">
                     <CalendarDays className="h-3.5 w-3.5 text-[var(--primary)]" />
 
-                    {packageItem.nights} Nights /{" "}
-                    {packageItem.days} Days
+                    {packageItem.durationLabel ?? `${packageItem.nights} Nights / ${packageItem.days} Days`}
                   </span>
 
                   {packageItem.route && (
@@ -129,6 +136,7 @@ export default async function PackageDetailPage({
                 <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-[1.05] text-[var(--text-primary)] sm:text-5xl lg:text-6xl">
                   {packageItem.title}
                 </h1>
+                {packageItem.subtitle && <p className="mt-3 text-base leading-7 text-[var(--text-secondary)]">{packageItem.subtitle}</p>}
 
                 <div className="mt-4 flex items-center gap-2 text-sm text-[var(--text-secondary)] sm:text-base">
                   <MapPin className="h-4 w-4 shrink-0 text-[var(--primary)]" />
@@ -143,12 +151,12 @@ export default async function PackageDetailPage({
               {/* Price summary */}
               <div className="rounded-[26px] border border-[var(--border)] bg-[var(--surface)] p-5 shadow-[0_18px_50px_rgba(82,43,20,0.08)] sm:p-6">
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--text-secondary)]">
-                  Starting from
+                  {onRequest ? "Request a quote" : packageItem.priceStatus === "reference" ? "Starting from (reference rate)" : packageItem.priceStatus === "indicative" ? "Indicative starting price" : "Starting from"}
                 </p>
 
                 <div className="mt-2 flex flex-wrap items-baseline gap-2">
                   <span className="text-3xl font-bold text-[var(--text-primary)]">
-                    ₹{formattedPrice}
+                    {onRequest ? "Price on Request" : `₹${formattedPrice}`}
                   </span>
 
                   {formattedOriginalPrice && (
@@ -156,18 +164,24 @@ export default async function PackageDetailPage({
                       ₹{formattedOriginalPrice}
                     </span>
                   )}
+                  {!onRequest && packageItem.priceStatus !== "reference" && packageItem.originalPrice && packageItem.originalPrice > packageItem.price && (
+                    <span className="rounded-full bg-[var(--primary-soft)] px-2.5 py-1 text-xs font-bold text-[var(--primary)]">
+                      {"₹"}{new Intl.NumberFormat("en-IN").format(packageItem.originalPrice - packageItem.price)} Off
+                    </span>
+                  )}
                 </div>
 
                 <p className="mt-1 text-xs text-[var(--text-secondary)]">
-                  per person*
+                  {packageItem.priceStatus === "indicative" && <span className="block">per adult</span>}
+                  {getPackagePriceNote(packageItem)}
                 </p>
 
                 <Link
-                  href="/contact"
+                  href={hasPackageEnquiry ? enquiryUrl : "/contact"}
                   className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--primary)] px-5 py-3 text-sm font-bold text-white transition-all hover:bg-[var(--primary-hover)]"
                 >
                   <Phone className="h-4 w-4" />
-                  Enquire Now
+                  {packageItem.priceStatus === "indicative" || packageItem.priceStatus === "reference" ? "Request Final Quote" : "Enquire Now"}
                 </Link>
               </div>
             </div>
@@ -208,8 +222,8 @@ export default async function PackageDetailPage({
             MAIN DETAILS
         ========================= */}
         <section className="py-12 sm:py-16">
-          <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_340px] lg:px-8">
-            <div>
+          <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_340px] lg:px-8">
+            <div className="min-w-0">
               {/* ABOUT */}
               <section>
                 <p className="text-xs font-bold uppercase tracking-[0.24em] text-[var(--primary)]">
@@ -225,6 +239,38 @@ export default async function PackageDetailPage({
                 </p>
               </section>
 
+              {packageItem.importantNotes && (
+                <section className="mt-8 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
+                  <h2 className="text-xl font-semibold text-[var(--text-primary)]">Travel notes</h2>
+                  <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-7 text-[var(--text-secondary)]">
+                    {packageItem.importantNotes.map(note => <li key={note}>{note}</li>)}
+                  </ul>
+                </section>
+              )}
+              {packageItem.departureDates && (
+                <section className="mt-8 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
+                  <h2 className="text-xl font-semibold text-[var(--text-primary)]">Scheduled departures</h2>
+                  <ul className="mt-3 space-y-2 text-sm leading-7 text-[var(--text-secondary)]">
+                    {packageItem.departureDates.map(departure => <li key={departure.date}><time dateTime={departure.date}>{new Intl.DateTimeFormat("en-GB", { day: "2-digit", month: "short", year: "numeric", timeZone: "Asia/Kolkata" }).format(new Date(`${departure.date}T00:00:00+05:30`))}</time> — Scheduled departure; availability confirmation required.</li>)}
+                  </ul>
+                </section>
+              )}
+              {packageItem.departureLabel && (
+                <section className="mt-8 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
+                  <h2 className="text-xl font-semibold text-[var(--text-primary)]">Festive departure</h2>
+                  <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">Source label: {packageItem.departureLabel}. Date/year confirmation required; current availability is unverified.</p>
+                </section>
+              )}
+              {(packageItem.accommodation || packageItem.pickupLocations || packageItem.dropLocations) && (
+                <section className="mt-8 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5">
+                  <h2 className="text-xl font-semibold text-[var(--text-primary)]">Stay & transfers</h2>
+                  <ul className="mt-3 space-y-2 text-sm leading-7 text-[var(--text-secondary)]">
+                    {packageItem.accommodation?.map(stay => <li key={stay.location}>{stay.location}: {stay.nights} {stay.nights === 1 ? "night" : "nights"}</li>)}
+                    {packageItem.pickupLocations?.map(location => <li key={`pickup-${location}`}>Pickup: {location}</li>)}
+                    {packageItem.dropLocations?.map(location => <li key={`drop-${location}`}>{location.startsWith("Drop arrangement:") ? location : `Drop: ${location}`}</li>)}
+                  </ul>
+                </section>
+              )}
               {/* HIGHLIGHTS */}
               <section className="mt-10 sm:mt-12">
                 <div className="flex items-center gap-2">
@@ -254,7 +300,7 @@ export default async function PackageDetailPage({
               </section>
 
               {/* PRICING */}
-              {packageItem.pricingOptions &&
+              {!onRequest && packageItem.pricingOptions &&
                 packageItem.pricingOptions.length > 0 && (
                   <section className="mt-10 sm:mt-12">
                     <div className="flex items-center gap-2">
@@ -278,12 +324,12 @@ export default async function PackageDetailPage({
                               </p>
                             </div>
 
-                            <div className="grid grid-cols-1 gap-px bg-[var(--border)] sm:grid-cols-3">
-                              <PriceCell
+                            <div className={`grid grid-cols-1 gap-px bg-[var(--border)] ${pricing.quad !== undefined && pricing.dual !== undefined ? "sm:grid-cols-3" : pricing.quad !== undefined || pricing.dual !== undefined ? "sm:grid-cols-2" : ""}`}>
+                              {pricing.quad !== undefined && <PriceCell
                                 label="Quad Sharing"
                                 subLabel="4 people"
                                 price={pricing.quad}
-                              />
+                              />}
 
                               <PriceCell
                                 label="Triple Sharing"
@@ -291,11 +337,11 @@ export default async function PackageDetailPage({
                                 price={pricing.triple}
                               />
 
-                              <PriceCell
+                              {pricing.dual !== undefined && <PriceCell
                                 label="Dual Sharing"
                                 subLabel="2 people"
                                 price={pricing.dual}
-                              />
+                              />}
                             </div>
                           </div>
                         )
@@ -303,8 +349,7 @@ export default async function PackageDetailPage({
                     </div>
 
                     <p className="mt-3 text-xs leading-5 text-[var(--text-secondary)]">
-                      *Prices are per person and may change based on departure,
-                      availability and season.
+                      {packageItem.priceStatus === "reference" ? getPackagePriceNote(packageItem) : "*Prices are per person and may change based on departure, availability and season."}
                     </p>
                   </section>
                 )}
@@ -333,9 +378,9 @@ export default async function PackageDetailPage({
                                 {item.day}
                               </div>
 
-                              <div>
+                              <div className="min-w-0">
                                 <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--primary)]">
-                                  Day {item.day}
+                                  {item.dayLabel ?? `Day ${item.day}`}
                                 </p>
 
                                 <h3 className="mt-1 text-xl font-semibold text-[var(--text-primary)]">
@@ -345,6 +390,8 @@ export default async function PackageDetailPage({
                                 <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">
                                   {item.description}
                                 </p>
+                                {item.meals && <p className="mt-3 text-sm leading-6 text-[var(--text-secondary)]"><strong>Meals:</strong> {item.meals.join(", ")}</p>}
+                                {item.accommodation && <p className="mt-2 text-sm leading-6 text-[var(--text-secondary)]"><strong>Stay:</strong> {item.accommodation}</p>}
                               </div>
                             </div>
                           </article>
@@ -359,7 +406,7 @@ export default async function PackageDetailPage({
                 SIDEBAR
             ========================= */}
             <aside>
-              <div className="space-y-5 lg:sticky lg:top-24">
+              <div className="space-y-5 lg:sticky lg:top-32">
                 {/* INCLUDED */}
                 <div className="rounded-[24px] border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
                   <div className="flex items-center gap-2">
@@ -424,7 +471,7 @@ export default async function PackageDetailPage({
                   </p>
 
                   <Link
-                    href="/contact"
+                    href={hasPackageEnquiry ? enquiryUrl : "/contact"}
                     className="mt-5 inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-bold text-[var(--primary)]"
                   >
                     Plan My Trip

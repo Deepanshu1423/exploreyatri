@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 
 import type { TravelPackage } from "@/types/package";
+import { getPackageEnquiryUrl, getPackagePriceNote } from "./packagePresentation";
 
 interface PackageCardProps {
   packageItem: TravelPackage;
@@ -15,17 +16,19 @@ interface PackageCardProps {
 export function PackageCard({
   packageItem,
 }: PackageCardProps) {
+  const onRequest = packageItem.priceStatus === "on-request";
+
   const formattedPrice = new Intl.NumberFormat("en-IN").format(
     packageItem.price
   );
 
-  const formattedOriginalPrice = packageItem.originalPrice
+  const formattedOriginalPrice = !onRequest && packageItem.originalPrice
     ? new Intl.NumberFormat("en-IN").format(
         packageItem.originalPrice
       )
     : null;
 
-  const duration = `${packageItem.nights} Nights / ${packageItem.days} Days`;
+  const duration = packageItem.durationLabel ?? `${packageItem.nights} Nights / ${packageItem.days} Days`;
 
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-[28px] border border-[var(--border)] bg-[var(--surface)] shadow-[0_18px_45px_rgba(82,43,20,0.07)] transition-all duration-500 hover:-translate-y-2 hover:border-[var(--primary)]/30 hover:shadow-[0_28px_70px_rgba(124,55,12,0.14)]">
@@ -57,8 +60,8 @@ export function PackageCard({
         </span>
 
         {/* DURATION */}
-        <div className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/25 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-md">
-          <CalendarDays className="h-3.5 w-3.5 text-[var(--primary-light)]" />
+        <div className="absolute bottom-4 left-4 right-4 inline-flex w-fit max-w-[calc(100%_-_2rem)] items-center gap-2 rounded-full border border-white/25 bg-black/25 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-md">
+          <CalendarDays className="h-3.5 w-3.5 shrink-0 text-[var(--primary-light)]" />
 
           {duration}
         </div>
@@ -66,10 +69,20 @@ export function PackageCard({
 
       {/* CONTENT */}
       <div className="flex flex-1 flex-col p-5 sm:p-6">
+        {packageItem.badge && (
+          <p className="mb-3 w-fit rounded-full bg-[var(--primary-soft)] px-3 py-1.5 text-xs font-bold text-[var(--primary)]">
+            {packageItem.badge}
+          </p>
+        )}
+        {packageItem.departureLabel && (
+          <p className="mb-3 text-xs leading-5 text-[var(--text-secondary)]">
+            Festive departure — date/year confirmation required
+          </p>
+        )}
         <div>
           <Link href={`/packages/${packageItem.slug}`}>
             <h3 className="text-xl font-semibold leading-tight text-[var(--text-primary)] transition-colors duration-300 group-hover:text-[var(--primary)] sm:text-2xl">
-              {packageItem.title}
+              {packageItem.shortTitle ?? packageItem.title}
             </h3>
           </Link>
 
@@ -107,12 +120,12 @@ export function PackageCard({
             <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--text-secondary)]">
-                  Starting from
+                  {onRequest ? "Request a quote" : packageItem.priceStatus === "reference" ? "Starting from (reference rate)" : packageItem.priceStatus === "indicative" ? "Indicative starting price" : "Starting from"}
                 </p>
 
                 <div className="mt-2 flex flex-wrap items-baseline gap-2">
                   <span className="text-2xl font-bold text-[var(--text-primary)]">
-                    ₹{formattedPrice}
+                    {onRequest ? "Price on Request" : `₹${formattedPrice}`}
                   </span>
 
                   {formattedOriginalPrice && (
@@ -120,10 +133,16 @@ export function PackageCard({
                       ₹{formattedOriginalPrice}
                     </span>
                   )}
+                  {!onRequest && packageItem.priceStatus !== "reference" && packageItem.originalPrice && packageItem.originalPrice > packageItem.price && (
+                    <span className="rounded-full bg-[var(--primary-soft)] px-2.5 py-1 text-xs font-bold text-[var(--primary)]">
+                      {"₹"}{new Intl.NumberFormat("en-IN").format(packageItem.originalPrice - packageItem.price)} Off
+                    </span>
+                  )}
                 </div>
 
-                <p className="mt-1 text-[10px] text-[var(--text-secondary)]">
-                  per person*
+                <p className="mt-1 text-xs leading-5 text-[var(--text-secondary)]">
+                  {packageItem.priceStatus === "indicative" && <span className="block">per adult</span>}
+                  {getPackagePriceNote(packageItem)}
                 </p>
               </div>
 
@@ -131,11 +150,16 @@ export function PackageCard({
                 href={`/packages/${packageItem.slug}`}
                 className="group/button inline-flex items-center justify-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface-soft)] px-4 py-2.5 text-sm font-bold text-[var(--text-primary)] transition-all duration-300 hover:border-[var(--primary)] hover:bg-[var(--primary)] hover:text-white"
               >
-                View Package
+                {packageItem.cardCtaLabel ?? (packageItem.collections ? "View Itinerary" : "View Package")}
 
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/button:translate-x-1" />
               </Link>
             </div>
+            {packageItem.collections && (
+              <a href={getPackageEnquiryUrl(packageItem)} className="mt-4 inline-flex text-sm font-bold text-[var(--primary)] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2">
+                Enquire Now
+              </a>
+            )}
           </div>
         </div>
       </div>
